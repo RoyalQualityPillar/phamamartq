@@ -1,0 +1,245 @@
+<div class="padding_50_px">
+  <div class="adjust m_b_20_px">
+    <div class="unit-code-container">
+      <div class="unit-code-box">
+        <form [formGroup]="ViewDetailForm">
+          <div class="row no-gutters ms-1 me-1 dense-4 margin-top_5">
+            <mat-form-field appearance="outline" class="col-12 px-1">
+              <mat-label>Organization Unit Code</mat-label>
+              <input
+                type="text"
+                matInput
+                formControlName="orgUnitCode"
+                placeholder="Oarganization Unit Code"
+                (change)="changeOrgUnit()"
+              />
+            </mat-form-field>
+          </div>
+        </form>
+        <div class="supplier-content-code" *ngIf="data.venInfo">
+          <div class="sup-head-code supply-container">
+            <div class="sup-fields-code heading-font">
+              Address of organization unit
+            </div>
+            <div class="sup-values-code">
+              {{ data.venInfo[0].ff0003 }}, {{ data.venInfo[0].ff0004 }},
+              {{ data.venInfo[0].ff0005 }},{{ data.venInfo[0].ff0007 }},{{
+                data.venInfo[0].ff0007
+              }},<br />
+              <span class="heading-font">Pincode:</span>
+              {{ data.venInfo[0].ff0010 }},<span class="heading-font">
+                Mobile: </span
+              >{{ data.venInfo[0].ff0011 }}<br /><span class="heading-font"
+                >Email: </span
+              >{{ data.venInfo[0].ff0012 }}, <br /><span class="heading-font"
+                >PAN: </span
+              >{{ data.venInfo[0].ff0013 }},
+              <span class="heading-font">GST: </span
+              >{{ data.venInfo[0].ff0014 }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sales-code-container">
+      <div class="unit-code-box">
+        <form [formGroup]="ViewDetailForm">
+          <div class="row no-gutters ms-1 me-1 dense-4">
+            <mat-form-field appearance="outline" class="col-12 px-1">
+              <mat-label>Sale Unit Code</mat-label>
+              <input
+                type="text"
+                matInput
+                formControlName="salesUnitCode"
+                placeholder="Sale Unit Code"
+              />
+            </mat-form-field>
+          </div>
+        </form>
+        <div class="supplier-content-code" *ngIf="data.venInfo">
+          <div class="sup-head-code supply-container">
+            <div class="sup-fields heading-font">Address of sales unit</div>
+            <div class="heading-font">
+              {{ data.venInfo[1].ff0003 }}, {{ data.venInfo[1]?.ff0004 }},
+              {{ data.venInfo[1]?.ff0005 }},{{ data.venInfo[1]?.ff0007 }},{{
+                data.venInfo[1]?.ff0007
+              }},<br />
+              <span class="heading-font">Pincode:</span>
+              {{ data.venInfo[1]?.ff0010 }},<span class="heading-font">
+                Mobile: </span
+              >{{ data.venInfo[1]?.ff0011 }}<br /><span class="heading-font"
+                >Email: </span
+              >{{ data.venInfo[1]?.ff0012 }}, <br /><span class="heading-font"
+                >PAN: </span
+              >{{ data.venInfo[1]?.ff0013 }},
+              <span class="heading-font">GST: </span
+              >{{ data.venInfo[1]?.ff0014 }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--item list start-->
+  <div class="container-fluid">
+    <mat-table
+      [dataSource]="cart"
+      matTableExporter
+      matSort
+    >
+      <ng-container matColumnDef="ff0005">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Product Code</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row"> {{ row.ff0002 }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="ff0006">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Product Name</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row"> {{ row.ff0003 }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="ff0018">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Product No</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row"> {{ row.ff0015 }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="ff0007">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Quantity</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row"> {{ row.ff0004 }} </mat-cell>
+      </ng-container>
+      <!-- <ng-container matColumnDef="ff0020">
+              <mat-header-cell *matHeaderCellDef mat-sort-header
+                >Pack</mat-header-cell
+              >
+              <mat-cell *matCellDef="let row"> {{ row.ff0005 }} </mat-cell>
+            </ng-container> -->
+
+      <ng-container matColumnDef="ff0009">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >HSN Code</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row"> {{ row.ff0006 }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="ff0010">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Rate</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row"> {{ row.ff0007 }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="ff0011">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >% Discount</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row"> {{ row.ff0008 }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="ff0012">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Discount Amount</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row"> {{ row.ff0009 }} </mat-cell>
+      </ng-container>
+      <!-- <ng-container matColumnDef="ff0012">
+              <mat-header-cell *matHeaderCellDef mat-sort-header
+                >Discounted Rate</mat-header-cell
+              >
+              <mat-cell *matCellDef="let row"> {{ row.ff0019 }} </mat-cell>
+            </ng-container> -->
+      <ng-container matColumnDef="ff0019">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Total Discount</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row"> {{ row.ff0022 }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="ff0013">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >After Discount Amount</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row"> {{ row.ff0010 }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="ff0015">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >%GST</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row"> {{ row.ff0012 }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="ff0016">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >GST Amount</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row"> {{ row.ff0013 }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="ff0017">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Amount</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row"> {{ row.ff0014 }} </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="qtListDisplayColumn"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: qtListDisplayColumn"></mat-row>
+    </mat-table>
+  </div>
+  <!--Item list End-->
+  <div class="container-fluid">
+    <mat-card class="" *ngIf="data.totals">
+      <div class="supplier-content">
+        <div class="sup-head row-background-color">
+          <div class="sup-fields">Total Discount :</div>
+          <div class="sup-values">{{ totals.ff0015 }}</div>
+        </div>
+        <div class="sup-head row-background-color">
+          <div class="sup-fields">After Discount Sub Total Amount :</div>
+          <div class="sup-values">
+            {{ totals.ff0013 }}
+          </div>
+        </div>
+
+        <div class="sup-head">
+          <div class="sup-fields">SGST :</div>
+          @if(data.venInfo[0].ff0015=== data.venInfo[1].ff0015){
+          <div class="sup-values">
+            {{ totals.ff0016 / 2 | number : "1.2-2" }}
+          </div>
+          }
+        </div>
+        <div class="sup-head">
+          <div class="sup-fields">CGST</div>
+          @if(data.venInfo[0].ff0015=== data.venInfo[1].ff0015){
+          <div class="sup-values">
+            {{ totals.ff0016 / 2 | number : "1.2-2" }}
+          </div>
+          }
+        </div>
+        <div class="sup-head row-background-color">
+          <div class="sup-fields">IGST</div>
+          <div class="sup-values">
+            {{ totals.ff0016 | number : "1.2-2" }}
+          </div>
+        </div>
+        <div class="sup-head row-background-color">
+          <div class="sup-fields">Total GST Amount</div>
+          <div class="sup-values">
+            {{ totals.ff0016 | number : "1.2-2" }}
+          </div>
+        </div>
+        <div class="sup-head">
+          <div class="sup-fields">Total Amount :</div>
+          <div class="sup-values">
+            {{ totals.ff0017 | number : "1.2-2" }}
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>
+
+<div class="display-flex m-2">
+  <button mat-raised-button class="submitButton" (click)="submission()">
+    Submission
+  </button>
+</div>

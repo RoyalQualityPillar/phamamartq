@@ -1,0 +1,532 @@
+/*Flex Box*/
+
+.display {
+  display: flex;
+}
+
+.flex-direction_row {
+  flex-direction: row;
+}
+
+.justify-content_space_between {
+  justify-content: space-between;
+}
+
+.justify-content_center {
+  justify-content: center;
+}
+
+.justify-items_center {
+  justify-items: center;
+}
+
+.align-items_baseline {
+  align-items: baseline;
+}
+
+.align-items_center {
+  align-items: center;
+}
+
+.align-self_stretch {
+  align-self: stretch;
+}
+
+.align-content_space_between {
+  align-content: space-between;
+}
+
+.flex_5 {
+  flex: 0 0 5%;
+}
+
+.flex_7 {
+  flex: 0 0 7%;
+}
+
+.flex_15 {
+  flex: 0 0 15%;
+}
+
+.flex_19 {
+  flex: 0 0 19%;
+}
+
+.flex_24 {
+  flex: 0 0 24%;
+}
+
+/*Border Start*/
+
+.border-radius_25 {
+  border-radius: 25px;
+}
+
+.border_1_b4b1b1 {
+  border: 1px solid #b4b1b1;
+}
+
+.border_1 {
+  border: 1px solid #ebe2e2;
+}
+
+.border-radius {
+  border-radius: var(--bs-border-radius);
+}
+
+/*Border Ends*/
+
+/*Background Color Starts*/
+
+.bg-color_ghost_White {
+  background-color: ghostwhite;
+}
+
+.bg-color_bcceea {
+  background-color: #bcceea;
+}
+
+.bg-color_#fdfdfd {
+  background-color: #fdfdfd;
+}
+
+.bg-color_295ea3 {
+  background-color: #295ea3;
+}
+
+.bg-color_dfece0 {
+  background-color: #dfece0;
+}
+
+.bg-color_474668 {
+  background-color: #474668;
+}
+
+.bg-color_099622 {
+  background-color: #099622 !important;
+}
+
+.bg-color_068436 {
+  background-color: #068436;
+}
+
+.box-shadow_0f3064 {
+  box-shadow: 1px 1px 1px 1px #0f3064;
+}
+
+.box-shadow_#b6b5c0 {
+  box-shadow: 0px 0px 2px 2px #b6b5c0;
+}
+
+.bg-color_dfecec {
+  background-color: #dfecec;
+}
+
+.bg-color_cadetblue {
+  background-color: cadetblue;
+}
+
+.bg-color_474668 {
+  background-color: #474668;
+}
+
+/*Background Color Ends*/
+
+.background_369 {
+  background: #369;
+}
+
+.bg_edf0f8 {
+  background: #edf0f8;
+}
+
+.border-collapse_seperate {
+  border-collapse: separate;
+}
+
+.border-spacing_2px_5px {
+  border-spacing: 2px 5px;
+}
+
+/*Color Starts*/
+
+.color_blue {
+  color: #040496;
+}
+
+.color_white {
+  color: #fff;
+}
+
+.color_black {
+  color: #000000;
+}
+
+.color_aliceblue {
+  color: aliceblue;
+}
+
+.color_mediumblue {
+  color: mediumblue;
+}
+
+.color_red {
+  color: red;
+}
+
+/*Color Ends*/
+
+.cursor_move {
+  cursor: move;
+}
+
+/*Font Size Starts*/
+
+.font_size_smaller {
+  font-size: smaller;
+}
+
+.font-size_10 {
+  font-size: 10px;
+}
+
+.font-size_12 {
+  font-size: 12px;
+}
+
+.font-size_14_4 {
+  font-size: 14.4px;
+}
+
+.font-size_18 {
+  font-size: 18px;
+}
+
+/*Font Size Ends*/
+
+/*Font Weight Starts*/
+
+.font-weight_550 {
+  font-weight: 550;
+}
+
+.font-weight_600 {
+  font-weight: 600;
+}
+
+.font-weight_700 {
+  font-weight: 700;
+}
+
+.font-weight_800 {
+  font-weight: 800;
+}
+
+.font-weight_bold {
+  font-weight: bold;
+}
+
+.font-family_auto {
+  font-family: auto;
+}
+
+.line-height_21px {
+  line-height: 21px;
+}
+
+/*Font Weight Starts*/
+
+/*Float Starts */
+
+.float-right {
+  float: right;
+}
+
+.float-left {
+  float: left;
+}
+
+.height_5 {
+  height: 5px;
+}
+
+.height_15 {
+  height: 15px;
+}
+
+.height_25 {
+  height: 25px !important;
+}
+
+.height_30 {
+  height: 30px;
+}
+.height_33 {
+  height: 33px;
+}
+
+.height_35 {
+  height: 35px;
+}
+
+.height_100 {
+  height: 100px;
+}
+
+.margin_4 {
+  margin: 4px;
+}
+
+.margin_5 {
+  margin: 5px;
+}
+
+.margin_10 {
+  margin: 10px;
+}
+
+.margin-top_0 {
+  margin-top: 0px !important;
+}
+
+.margin-top_2 {
+  margin-top: 2px;
+}
+
+.margin-top_4 {
+  margin-top: 4px;
+}
+
+.margin-top_5 {
+  margin-top: 5px !important;
+}
+
+.margin-top_6 {
+  margin-top: 6px;
+}
+
+.margin-top_7 {
+  margin-top: 7px;
+}
+
+.margin-top_9 {
+  margin-top: 10px;
+}
+.margin-top_10 {
+  margin-top: 10px !important;
+}
+
+.margin-top_15 {
+  margin-top: 15px !important;
+}
+
+.margin-top_26 {
+  margin-top: 26px;
+}
+
+.margin-right_5 {
+  margin-right: 5px;
+}
+
+.margin-right_10 {
+  margin-right: 10px;
+}
+
+.margin-top_add_button {
+  margin-top: -65px;
+}
+
+.margin-bottom_1 {
+  margin-bottom: 1px;
+}
+
+.margin-bottom_5 {
+  margin-bottom: 5px !important;
+}
+
+.margin-bottom_10 {
+  margin-bottom: 10px !important;
+}
+
+.margin-bottom_15 {
+  margin-bottom: 15px !important;
+}
+
+.margin-bottom_20 {
+  margin-bottom: 20px;
+}
+
+.margin-bottom_35 {
+  margin-bottom: 35px;
+}
+
+.margin-left_5 {
+  margin-left: 5px;
+}
+
+.margin-left_10 {
+  margin-left: 10px;
+}
+
+.margin-left_12 {
+  margin-left: 12px !important;
+}
+
+.margin-left_15 {
+  margin-left: 15px;
+}
+
+.min-width_19 {
+  min-width: 19%;
+}
+
+.min-width_79 {
+  min-width: 79%;
+}
+
+.min-width_99 {
+  min-width: 99%;
+}
+
+.overflow-x_scroll {
+  overflow-x: scroll;
+}
+
+.outline_none {
+  outline: none;
+}
+
+/* Margin Ends*/
+
+/*Padding Starts*/
+
+.padding_0 {
+  padding: 0px;
+}
+
+.padding_4 {
+  padding: 4px;
+}
+
+.paddding_25 {
+  padding: 25px;
+}
+
+.padding-top_5 {
+  padding-top: 5px;
+}
+
+.padding-top_12 {
+  padding-top: 12px;
+}
+
+.padding-left_4 {
+  padding-left: 4px;
+}
+
+.padding-left_5 {
+  padding-left: 5px;
+}
+
+.padding-left_10 {
+  padding-left: 10px;
+}
+
+.padding_left_16 {
+  padding-left: 16px;
+}
+
+.padding-left_15 {
+  padding-left: 15px;
+}
+
+.padding-right_5 {
+  padding-right: 5px;
+}
+
+.padding-right_15 {
+  padding-right: 15px;
+}
+
+.padding-right_16 {
+  padding-right: 16px;
+}
+
+.padding-right_16 {
+  padding-right: 16px;
+}
+
+.padding_2px_5px {
+  padding: 2px 5px;
+}
+
+.text-align {
+  text-align: center;
+}
+
+.text-align_left {
+  text-align: left;
+}
+
+.text-align_right {
+  text-align: right;
+}
+
+.vertical-align_middle {
+  vertical-align: middle;
+}
+
+.white-space_nowrap {
+  white-space: nowrap;
+}
+
+/*Width Starts*/
+
+.width_auto {
+  width: auto;
+}
+
+.width_fit_content {
+  width: fit-content !important;
+}
+
+.width_15_px {
+  width: 15px;
+}
+.width_100 {
+  width: 100%;
+}
+
+.width_15_px {
+  width: 15px;
+}
+
+.width_70_px {
+  width: 70px;
+}
+
+.width_100_px {
+  width: 100px;
+}
+
+.width_110_px {
+  width: 110px;
+}
+
+.width_140_px {
+  width: 140px;
+}
+
+.width_150_px {
+  width: 150px;
+}
+
+.width_full {
+  width: 100%;
+}
+
+.min-height_10 {
+  min-height: 10px;
+}
+
+/*Width Ends*/

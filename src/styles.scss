@@ -1,0 +1,227 @@
+
+@use '@angular/material' as mat;
+
+html {
+  @include mat.theme((
+    color: (
+      theme-type: light,
+      primary: mat.$blue-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}
+// 1. Import Angular Material theming
+// 1. Import required theming APIs from Angular Material
+// ✅ Use direct paths instead of @use
+
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+//@import "./assets/common-styles/theme.scss";
+
+// @use '@angular/material' as mat;
+// @use '@angular/material/core' as mat-core;
+// @mixin my-form-field-density($density) {
+//   $field-typography: mat.define-typography-config(
+//     $body-1: mat.define-typography-level(12px, 24px, 400),
+//   );
+//   @include mat.typography-level($field-typography, "body-1");
+//   @include mat.form-field-density($density);
+//   margin-bottom: -18px; //  leaving a bottom margin 8px
+// }
+
+.mdc-text-field--outlined.mdc-notched-outline--upgraded
+  .mdc-floating-label--float-above,
+.mdc-text-field--outlined
+  .mdc-notched-outline--upgraded
+  .mdc-floating-label--float-above {
+  font-size: 0.75rem;
+}
+@import './styles/theme/group1.scss';
+@import './styles/theme/group2.scss';
+@import './styles/theme/group3.scss';
+@import './styles/theme/group4.scss';
+mat-label {
+  font-size: 0.7rem;
+}
+
+.dense-5 {
+  //@include my-form-field-density(-5);
+}
+
+.dense-4 {
+ // @include my-form-field-density(-4);
+}
+
+.dense-3 {
+ // @include my-form-field-density(-3);
+}
+
+.dense-1 {
+ // @include mat.all-component-densities(-1);
+}
+
+.dense-2 {
+ // @include mat.all-component-densities(-2);
+}
+
+.mat-option {
+  height: 24px;
+  /* Set your desired height */
+  line-height: 24px;
+  /* Set the same or adjusted line height */
+}
+
+.global-loading-spinner {
+  left: 45vw;
+  top: 30vh;
+  height: 60px;
+  position: absolute !important;
+  z-index: 999;
+}
+
+.mat-menu-item:hover {
+  background-color: rgb(20, 7, 73);
+  border: 1px solid orange;
+}
+
+.global-field-error {
+  color: red;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.global-snackbar-success {
+  background-color: #007a3e;
+  color: white;
+  z-index: 1500;
+}
+
+.isDisabledBtn {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.isReadonlyField {
+  opacity: 0.6;
+}
+
+.errorMsg {
+  color: red;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: monospace;
+}
+
+.mat-mdc-menu-content {
+  margin: 0;
+  padding: 0px 0;
+  list-style-type: none;
+}
+
+.mat-mdc-menu-panel.mat-mdc-menu-panel {
+  min-width: 112px;
+  max-width: 200px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+}
+
+.exportIconBtn {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+}
+
+.exportIcon {
+  height: 20px;
+  width: 20px;
+}
+.margin_button{
+  height: 20px;
+}
+/*Chartboard CSS*/
+.mat-mdc-table .mdc-data-table__header-row {
+  min-height: 37px !important;
+}
+.mat-header-row {
+  min-height: 37px !important;
+}
+.uppercase-header {
+  text-transform: uppercase;
+}
+
+// .rqp-life-cycle-table-columns{
+//   &.mat-column-sNo {
+//     flex: 0 0 5% !important;
+// }
+// &.mat-column-action {
+//   flex: 0 0 5% !important;
+// }
+// &.mat-column-userid {
+//   flex: 0 0 10% !important;
+// }
+
+// &.mat-column-lcnum {
+//   flex: 0 0 15%;
+// }
+
+// &.mat-column-lcrole {
+//   flex: 0 0 20%;
+// }
+
+// &.mat-column-stage {
+//   flex: 0 0 5%;
+// }
+
+// &.mat-column-uc0001 {
+//   flex: 0 0 15%;
+// }
+// &.mat-column-ff0001 {
+//   flex: 0 0 15%;
+// }
+//}
+.success-snackbar {
+  --mdc-snackbar-container-color: #007a3e !important; /* Green */
+  --mdc-snackbar-supporting-text-color: white !important;
+}
+
+.error-snackbar {
+  --mdc-snackbar-container-color: #cf2a2a !important; /* Red */
+  --mdc-snackbar-supporting-text-color: white !important;
+}
+
+.warning-snackbar {
+  --mdc-snackbar-container-color:#ed8926 !important; /* Orange */
+  --mdc-snackbar-supporting-text-color: white !important;
+}
+.mdc-snackbar__label {
+  padding-left: 16px;
+  padding-right: 8px;
+  width: 100%;
+  flex-grow: 1;
+  box-sizing: border-box;
+  margin: 0;
+  visibility: hidden;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+}
+.mat-mdc-raised-button {
+  border-radius: 4px !important;
+}
+.mat-mdc-menu-item.white-label {
+  color: white !important;
+}
+.mat-toolbar-row{
+  height: 41px !important;
+}

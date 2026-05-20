@@ -1,0 +1,58 @@
+<div class="row gx-0 create-update-dialog-header-section">
+  <div class="col-10 d-flex justify-content-start">
+    <h1 class="daialog-title-name p-2">Blog Detail</h1>
+  </div>
+  <div class="col-2 d-flex justify-content-end">
+    <button mat-icon-button class="close-button" [mat-dialog-close]="true">
+      <mat-icon class="close-icon" color="warn">close</mat-icon>
+    </button>
+  </div>
+</div>
+
+<form [formGroup]="detailConfirmation" style="width: 100%; margin-top: 8px">
+  <div class="row no-gutters ms-1 me-1 dense-4">
+    <div>
+      <mat-form-field appearance="outline" class="col-6 px-1">
+        <mat-label>User Id</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="userId"
+          placeholder="User Id"
+        />
+      </mat-form-field>
+      <button
+        mat-raised-button
+        class="submitButton"
+        (click)="sendConfirmation()"
+      >
+        Sent OTP
+      </button>
+    </div>
+    <div *ngIf="isErrorMsg">
+      <p>{{ errorMsg }}</p>
+      <p>
+        For Registration
+        <a
+          style="color: blueviolet; cursor: pointer"
+          (click)="onDisplayRegistrationForm()"
+          >Click here</a
+        >
+      </p>
+    </div>
+    <div *ngIf="isSuccessMsg">
+      <p>{{ successMsg }}</p>
+      <mat-form-field appearance="outline" class="col-6 px-1">
+        <mat-label>OTP</mat-label>
+        <input type="text" matInput formControlName="otp" placeholder="otp" />
+      </mat-form-field>
+      <button mat-raised-button class="submitButton" (click)="otpVerify()">
+        Verify
+      </button>
+    </div>
+  </div>
+</form>
+
+<div class="submit">
+  <button mat-raised-button mat-dialog-close>Close</button>
+</div>

@@ -1,0 +1,173 @@
+<mat-spinner
+  *ngIf="isLoading"
+  class="global-loading-spinner"
+  color="primary"
+  mode="indeterminate"
+></mat-spinner>
+<div class="row gx-0 create-update-dialog-header-section">
+  <div class="col-10 d-flex justify-content-start">
+    <h1 class="daialog-title-name p-2">Blog Detail</h1>
+  </div>
+  <div class="col-2 d-flex justify-content-end">
+    <button mat-icon-button class="close-button" [mat-dialog-close]="true">
+      <mat-icon class="close-icon" color="warn">close</mat-icon>
+    </button>
+  </div>
+</div>
+<div class="screenOverFlowY">
+  <div *ngIf="loginSection">
+    <div class="msgDiv">
+      <span class="successMsg" *ngIf="registrationSuccessMsg">{{
+        registrationSuccessMsg
+      }}</span>
+    </div>
+    <form [formGroup]="detailConfirmation" style="width: 100%; margin-top: 8px">
+      <div class="row no-gutters ms-1 me-1 dense-4">
+        <div>
+          <mat-form-field appearance="outline" class="col-6 px-1">
+            <mat-label>Email.</mat-label>
+            <input
+              type="text"
+              matInput
+              formControlName="mailId"
+              placeholder="email"
+            />
+          </mat-form-field>
+          <button
+            mat-raised-button
+            class="submitButton"
+            (click)="senConfirmation()"
+          >
+            Sent OTP
+          </button>
+        </div>
+        <div *ngIf="isErrorMsg">
+          <p>{{ errorMsg }}</p>
+          <p>
+            For Registration
+            <a
+              style="color: blueviolet; cursor: pointer"
+              (click)="onDisplayRegistrationForm()"
+              >Click here</a
+            >
+          </p>
+        </div>
+        <div *ngIf="isSuccessMsg">
+          <p>{{ successMsg }}</p>
+          <mat-form-field appearance="outline" class="col-6 px-1">
+            <mat-label>OTP</mat-label>
+            <input
+              type="text"
+              matInput
+              formControlName="otp"
+              placeholder="otp"
+            />
+          </mat-form-field>
+          <button mat-raised-button class="submitButton" (click)="otpVerify()">
+            Verify
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div *ngIf="registrationSection">
+    <form [formGroup]="RegistrationForm" style="width: 100%; margin-top: 2px">
+      <div class="row no-gutters ms-1 me-1 dense-4">
+        <mat-form-field appearance="outline" class="col-6 px-1">
+          <mat-label>First Name</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="ff0002"
+            placeholder="First Name"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-6 px-1">
+          <mat-label>Last Name</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="ff0003"
+            placeholder="Last Name"
+          />
+        </mat-form-field>
+      </div>
+      <div class="row no-gutters ms-1 me-1 dense-4">
+        <mat-form-field appearance="outline" class="col-6 px-1">
+          <mat-label>Mobile No.</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="ff0004"
+            placeholder="Mobile"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-6 px-1">
+          <mat-label>e-mail</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="ff0005"
+            placeholder="Email"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="row no-gutters ms-1 me-1 dense-4">
+        <mat-form-field appearance="outline" class="col-6 px-1">
+          <mat-label>Location</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="ff0006"
+            placeholder="Location"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-6 px-1">
+          <mat-label>Company</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="ff0007"
+            placeholder="Company"
+          />
+        </mat-form-field>
+      </div>
+
+      <button
+        mat-raised-button
+        class="submitButton"
+        (click)="onRegistration()"
+        [class.isDisabledBtn]="RegistrationForm.invalid"
+      >
+        Registration
+      </button>
+      <button mat-raised-button class="submitButton" (click)="backToLogin()">
+        Back to Login
+      </button>
+    </form>
+  </div>
+
+  <div *ngIf="postDetail">
+    <div *ngIf="decodedHtml; else noContent">
+      <div [innerHTML]="decodedHtml" class="content"></div>
+    </div>
+    <ng-template #noContent>
+      <p class="error-message">No content available to display.</p>
+    </ng-template>
+  </div>
+</div>
+
+<div *ngIf="postDetail">
+  <div *ngIf="decodedHtml; else noContent">
+    <!-- Dynamically render HTML content -->
+    <div [innerHTML]="decodedHtml" class="content"></div>
+  </div>
+  <ng-template #noContent>
+    <p class="error-message">No content available to display.</p>
+  </ng-template>
+</div>
+
+<div class="submit">
+  <button mat-raised-button mat-dialog-close>Close</button>
+</div>

@@ -1,0 +1,32 @@
+
+.rqp-life-cycle-table-columns{
+    &.mat-column-sNo {
+      flex: 0 0 5% !important;
+  }
+  &.mat-column-action {
+    flex: 0 0 5% !important;
+  }
+  &.mat-column-userid {
+    flex: 0 0 10% !important;
+  }
+  
+  &.mat-column-lcnum {
+    flex: 0 0 15%;
+  }
+  
+  &.mat-column-lcrole {
+    flex: 0 0 20%;
+  }
+  
+  &.mat-column-stage {
+    flex: 0 0 5%;
+  }
+  
+  &.mat-column-uc0001 {
+    flex: 0 0 15%;
+  }
+  // &.mat-column-ff0001 {
+  //   flex: 0 0 15%;
+  // }
+  }
+  

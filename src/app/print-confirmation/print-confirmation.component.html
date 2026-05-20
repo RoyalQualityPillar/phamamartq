@@ -1,0 +1,74 @@
+<div cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+
+    <div class='content-heading' cdkDragHandle
+  style="outline: none; margin-right: 10px; cursor: move;">Print Confirmation</div>
+  <div class='content-container'>
+    <mat-spinner *ngIf="isLoading" class="global-loading-spinner" color="primary"
+    mode="indeterminate" ></mat-spinner>
+      <form [formGroup]="ConfirmPrint" style="width: 100%;">
+        <div class="row no-gutters ms-1 me-1 dense-4">
+          <mat-form-field appearance="outline" class="col-6 px-1">
+            <mat-label>Unit Code</mat-label>
+            <input
+              type="text"
+              matInput
+              formControlName="ff0007"
+              placeholder="Unit Code"
+            />           
+          </mat-form-field>
+            <mat-form-field appearance="outline" class="col-6 px-1">
+                <mat-label>Printer Name</mat-label>
+                <input type="text" matInput formControlName="printerName"  placeholder="Printer Name" >
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-6 px-1">
+              <mat-label>Issued Department</mat-label>
+              <input
+                type="text"
+                matInput
+                formControlName="department"
+                placeholder="Issued Department"
+                (change)="onChangeDepartmentCode()"
+              />
+              <img
+                alt="lov img"
+                src="../../../../../../assets/searchfind.svg"
+                class="icon-size lovSearchButton"
+                color="primary"
+                (click)="openDepartmentCodeLOV()"
+              />
+            </mat-form-field>
+            <mat-form-field appearance="outline"class="col-6 px-1">
+              <mat-label>Copy Type</mat-label>
+              <input
+                type="text"
+                matInput
+                formControlName="copyType"
+                placeholder="Copy Type"
+                (change)="onCopyTypeChange()"
+              />
+              <img
+                alt="lov img"
+                src="../../../../../../assets/searchfind.svg"
+                class="icon-size lovSearchButton"
+                color="primary"
+                (click)="openCopyTypeLOV()"
+              />
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Comments</mat-label>
+                <textarea type="text" matInput formControlName="comments"
+                    placeholder="Comments">
+                </textarea>
+            </mat-form-field>           
+        </div>
+    </form>
+  </div>
+  
+  <div style="display: flex;">
+  <button  class="button-container yes-button" mat-raised-button mat-primary mat-flat-button id="yes-button" [class.isDisabledBtn]="this.ConfirmPrint.invalid" (click)="onConfirm()">Print</button>
+  
+   <button class="button-container no-button" mat-raised-button mat-primary mat-flat-button id="no-button" (click)="onDismiss()">Cancel</button>
+  </div>
+  </div>
+
+ 

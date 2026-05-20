@@ -1,0 +1,30 @@
+// @import "../../../../../assets/common-styles/master-table.scss";
+// @import "../../../common-styles/supplier.scss";
+.example-table-container {
+  min-width: 99%;
+  /* overflow-x: scroll; */
+}
+
+.mat-column-ff0001 {
+  flex: 0 0 7%;
+}
+.unit-code-container {
+  min-width: 49%;
+}
+
+.sales-code-container {
+  min-width: 49%;
+}
+
+.display-flex {
+  display: flex;
+  justify-content: center;
+}
+
+.padding_50_px {
+  padding: 50px;
+}
+
+.m_b_20_px {
+  margin-bottom: 20px;
+}

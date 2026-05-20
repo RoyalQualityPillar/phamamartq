@@ -1,0 +1,113 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "ecart": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "src/main.ts",
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/ngx-extended-pdf-viewer/assets/",
+                "output": "/assets/"
+              }
+            ],
+            "styles": [
+              { "input": "src/styles.scss", "inject": true },
+              { "input": "src/styles/theme/rqp-table-columns.scss", "inject": true },
+              { "input": "src/styles/sd-styles.scss", "inject": true },
+              { "input": "src/styles-material-form.scss", "inject": true },
+              { "input": "src/styles/styles-material-table.scss", "inject": true },
+              { "input": "src/styles/styles-material-tabs.scss", "inject": true },
+              { "input": "src/styles/styles_customer.scss", "inject": true },
+              { "input": "node_modules/bootstrap/dist/css/bootstrap.min.css", "inject": true }
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "5MB",
+                  "maximumError": "10MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "ecart:build:production"
+            },
+            "development": {
+              "buildTarget": "ecart:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular/build:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
+            ],
+            "styles": [
+              "src/styles/theme/rqp-table-columns.scss",
+              "src/styles-material-form.scss",
+              "src/styles/styles-material-table.scss",
+              "src/styles/styles-material-tabs.scss",
+              "src/styles/styles_customer.scss",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": "d8f6cf03-8c5c-47cc-9da1-709da598bb80"
+  }
+}

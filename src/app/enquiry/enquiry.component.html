@@ -1,0 +1,106 @@
+<div [formGroup]="enquiryForm" style="margin: 20px">
+  <div class="row">
+    <div class="col-3 px-1">
+      <mat-form-field appearance="outline">
+        <mat-label>Pack No.</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="packNo"
+          placeholder="email"
+          readonly
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="col-3 px-1">
+      <mat-form-field appearance="outline">
+        <mat-label>Material Name</mat-label>
+        <input type="text" matInput formControlName="materialName" readonly />
+      </mat-form-field>
+    </div>
+
+    <div class="col-3 px-1">
+      <mat-form-field appearance="outline">
+        <mat-label>Material Cas No</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="materialCasNo"
+          placeholder="email"
+          readonly
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="col-3 px-1">
+      <mat-form-field appearance="outline">
+        <mat-label>Pack Name</mat-label>
+        <input type="text" matInput formControlName="packName" readonly />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-3 px-1">
+      <mat-form-field appearance="outline">
+        <mat-label>Pack Size</mat-label>
+        <input type="text" matInput formControlName="packSize" />
+      </mat-form-field>
+    </div>
+
+    <div class="col-3 px-1">
+      <mat-form-field appearance="outline">
+        <mat-label>No of Packs</mat-label>
+        <input type="text" matInput formControlName="noOfPacks" />
+      </mat-form-field>
+    </div>
+
+    <div class="col-3 px-1">
+      <mat-form-field appearance="outline">
+        <mat-label>Quantity</mat-label>
+        <input type="text" matInput formControlName="quantity" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-3 px-1">
+      <mat-form-field appearance="outline">
+        <mat-label>UOM</mat-label>
+        <input type="text" matInput formControlName="uom" readonly />
+      </mat-form-field>
+    </div>
+
+    <div class="col-3 px-1">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input type="text" matInput formControlName="email" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 px-1">
+      <div class="row no-gutters margin-top_10">
+        <mat-form-field appearance="outline" class="width_100">
+          <mat-label>Comments</mat-label>
+          <textarea
+            type="text"
+            matInput
+            placeholder="Comments"
+            formControlName="comments"
+          >
+          </textarea>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="submit">
+  <div>
+    <button mat-raised-button mat-dialog-close>Close</button>
+  </div>
+  <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+</div>

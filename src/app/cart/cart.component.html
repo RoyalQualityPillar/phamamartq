@@ -1,0 +1,296 @@
+<div class="row">
+  <div class="col-12">
+    <div class="p-2">
+      <div class="tabOverFlowX" *ngIf="userData.materialInfo">
+        <table class="display-table" id="dataTable">
+          <thead>
+            <tr>
+              <th>Price Code</th>
+              <th>Product Code</th>
+              <th>Product Name</th>
+              <th>Product No</th>
+              <th col="7">Quantity</th>
+              <th col="11">Pack</th>
+              <th>HSN Code</th>
+              <th col="10">Rate</th>
+              <th col="11">% Discount</th>
+              <th col="12">Discount Amount</th>
+              <th col="12">Discount Rate</th>
+              <th col="12">Total Discount</th>
+              <th col="13">After Discount Amount</th>
+              <th>%GST</th>
+              <th>GST Amount</th>
+              <th>Final Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <!-- Price Code Starts -->
+                <input
+                  type="text"
+                  class="form-control form-control-sm txt-box width_150_px"
+                  [(ngModel)]="materialInfoData.materialInfo.uc0001"
+                  [ngModelOptions]="{ standalone: true }"
+                  readonly
+                  required
+                />
+              </td>
+              <!-- Price Code Ends -->
+
+              <!-- Product Code Starts -->
+              <td>
+                <input
+                  type="text"
+                  class="form-control form-control-sm txt-box"
+                  [(ngModel)]="materialInfoData.materialInfo.ff0013"
+                  [ngModelOptions]="{ standalone: true }"
+                  readonly
+                  required
+                />
+              </td>
+              <!-- Product Code Ends -->
+
+              <!-- Product Name Starts -->
+              <td>
+                <input
+                  type="text"
+                  class="form-control form-control-sm txt-box"
+                  [(ngModel)]="materialInfoData.materialInfo.ff0011"
+                  [ngModelOptions]="{ standalone: true }"
+                  readonly
+                  required
+                />
+              </td>
+              <!-- Product Name Ends -->
+
+              <!-- Product No Starts -->
+              <td>
+                <input
+                  type="text"
+                  class="form-control form-control-sm txt-box width_100_px"
+                  [(ngModel)]="materialInfoData.materialInfo.ff0010"
+                  [ngModelOptions]="{ standalone: true }"
+                  readonly
+                  required
+                />
+              </td>
+              <!-- Product No Ends -->
+
+              <!-- Quantity Starts  -->
+              <td>
+                <input
+                  type="number"
+                  class="form-control form-control-sm txt-box width_100_px"
+                  [(ngModel)]="materialInfoData.materialInfo.ff0004"
+                  [ngModelOptions]="{ standalone: true }"
+                  (ngModelChange)="calculateCartValues()"
+                  required
+                />
+              </td>
+              <!-- Quantity Ends -->
+
+              <!-- Pack Starts -->
+              <td>
+                <input
+                  type="text"
+                  class="form-control form-control-sm txt-box width_140_px"
+                  [(ngModel)]="materialInfoData.materialInfo.ff0005"
+                  [ngModelOptions]="{ standalone: true }"
+                  readonly
+                  required
+                />
+              </td>
+              <!-- Pack Ends -->
+
+              <!-- HSN Code Starts -->
+              <td>
+                <input
+                  type="text"
+                  class="form-control form-control-sm txt-box width_100_px"
+                  [(ngModel)]="materialInfoData.materialInfo.ff0008"
+                  [ngModelOptions]="{ standalone: true }"
+                  readonly
+                  required
+                />
+              </td>
+              <!-- HSN Code Ends -->
+
+              <!-- Rate Starts -->
+              <td>
+                <input
+                  type="number"
+                  class="form-control form-control-sm txt-box width_100_px"
+                  [(ngModel)]="materialInfoData.materialInfo.ff0006"
+                  [ngModelOptions]="{ standalone: true }"
+                  (ngModelChange)="calculateCartValues()"
+                  required
+                />
+              </td>
+              <!-- Rate Ends -->
+
+              <td>
+                <input
+                  type="number"
+                  class="form-control form-control-sm txt-box width_100_px"
+                  [(ngModel)]="materialInfoData.materialInfo.ff0003"
+                  [ngModelOptions]="{ standalone: true }"
+                  (ngModelChange)="calculateCartValues()"
+                  required
+                />
+              </td>
+
+              <!-- Discount Starts -->
+              <td>
+                <input
+                  type="number"
+                  class="form-control form-control-sm txt-box width_100_px"
+                  [(ngModel)]="materialInfoData.materialInfo.getDiscountAmount"
+                  [ngModelOptions]="{ standalone: true }"
+                  readonly
+                  required
+                />
+              </td>
+              <!-- Discount Ends -->
+
+              <!-- Discount Amount Starts -->
+              <td>
+                <input
+                  type="number"
+                  class="form-control form-control-sm txt-box width_100_px"
+                  [(ngModel)]="materialInfoData.materialInfo.discountedRate"
+                  [ngModelOptions]="{ standalone: true }"
+                  readonly
+                  required
+                />
+              </td>
+              <!-- Discount Amount Ends -->
+
+              <td>
+                <input
+                  type="number"
+                  class="form-control form-control-sm txt-box width_100_px"
+                  [(ngModel)]="materialInfoData.materialInfo.totalDiscount"
+                  [ngModelOptions]="{ standalone: true }"
+                  readonly
+                  required
+                />
+              </td>
+              <!-- Discount Amount Ends -->
+
+              <!-- After Discount Amount Starts -->
+              <td>
+                <input
+                  type="number"
+                  class="form-control form-control-sm txt-box width_100_px"
+                  [(ngModel)]="
+                    materialInfoData.materialInfo.afterdiscountAmount
+                  "
+                  [ngModelOptions]="{ standalone: true }"
+                  readonly
+                  required
+                />
+              </td>
+              <!-- After Discount Amount Ends -->
+
+              <!-- GST Starts Starts -->
+              <td>
+                <input
+                  type="number"
+                  class="form-control form-control-sm txt-box width_100_px"
+                  [(ngModel)]="materialInfoData.materialInfo.ff0007"
+                  [ngModelOptions]="{ standalone: true }"
+                  (ngModelChange)="calculateCartValues()"
+                  required
+                />
+              </td>
+              <!-- GST Ends -->
+
+              <!-- GST Amount Starts -->
+              <td>
+                <input
+                  type="number"
+                  class="form-control form-control-sm txt-box width_100_px"
+                  [(ngModel)]="materialInfoData.materialInfo.getGstAmount"
+                  [ngModelOptions]="{ standalone: true }"
+                  readonly
+                  required
+                />
+              </td>
+              <!-- GST Amount Ends -->
+
+              <!-- Final Price Starts -->
+              <td>
+                <input
+                  type="number"
+                  class="form-control form-control-sm txt-box width_100_px"
+                  [(ngModel)]="materialInfoData.materialInfo.finalPrice"
+                  [ngModelOptions]="{ standalone: true }"
+                  readonly
+                  required
+                />
+              </td>
+              <!-- Final Price Ends -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <mat-card class="">
+        <div class="supplier-content">
+          <div class="sup-head row-background-color">
+            <div class="sup-fields">Total Discount :</div>
+            <div class="sup-values">
+              {{ totalDisAmt | number : "1.2-2" }}
+            </div>
+          </div>
+          <div class="sup-head row-background-color">
+            <div class="sup-fields">After Discount Sub Total Amount :</div>
+            <div class="sup-values">
+              {{ afterDisAmt | number : "1.2-2" }}
+            </div>
+          </div>
+
+          <div class="sup-head">
+            <div class="sup-fields">SGST :</div>
+            <div class="sup-values">
+              {{ SGST | number : "1.2-2" }}
+            </div>
+          </div>
+          <div class="sup-head">
+            <div class="sup-fields">CGST</div>
+            <div class="sup-values">
+              {{ CGST | number : "1.2-2" }}
+            </div>
+          </div>
+          <div class="sup-head row-background-color">
+            <div class="sup-fields">IGST</div>
+            <div class="sup-values">
+              {{ IGST | number : "1.2-2" }}
+            </div>
+          </div>
+          <div class="sup-head row-background-color">
+            <div class="sup-fields">Total GST Amount</div>
+            <div class="sup-values">
+              {{ totalGst | number : "1.2-2" }}
+            </div>
+          </div>
+          <div class="sup-head">
+            <div class="sup-fields">Total Amount :</div>
+            <div class="sup-values">
+              {{ totalAmt | number : "1.2-2" }}
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<div class="submit">
+  <div>
+    <button mat-raised-button mat-dialog-close>Close</button>
+  </div>
+  <button mat-raised-button color="primary" (click)="cartApi()">Submit</button>
+</div>

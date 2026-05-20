@@ -1,0 +1,65 @@
+.screenOverFlowY {
+  max-height: 400px;
+  min-height: 200px;
+  overflow-y: auto;
+  margin-top: 5px;
+  overflow-x: hidden;
+}
+p {
+  font-weight: 700;
+}
+.successMsg {
+  font-weight: 700;
+  color: green;
+  font-size: 14px;
+  padding-left: 6px;
+}
+.msgDiv {
+  margin-left: 21px;
+  padding-bottom: 2px;
+  background: #e7f0eb;
+}
+
+///description
+///
+///
+.loader {
+  font-size: 16px;
+  font-weight: 500;
+  color: #555;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.content {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+}
+
+.telugu-text {
+  font-family: "Noto Sans Telugu", sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #000;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.status-message {
+  font-size: 14px;
+  color: #007bff;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.submit {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}

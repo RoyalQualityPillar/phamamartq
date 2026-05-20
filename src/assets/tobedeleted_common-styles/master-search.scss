@@ -1,0 +1,127 @@
+.filter {
+  min-width: 19%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-top: 4px;
+}
+
+.filter-box {
+  box-shadow: 0px 0px 2px 2px #b6b5c0;
+  padding: 4px;
+  margin-top: 6px;
+}
+
+.exportIconBtn {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+}
+
+.exportIcon {
+  height: 20px;
+  width: 20px;
+}
+
+.supplier {
+  font-size: 0.95em;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.input-style {
+  margin-top: 5px;
+  width: 100%;
+}
+
+.example-button-row {
+  text-align: center;
+  padding-top: 12px;
+}
+
+.supplier-content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 5px;
+  margin-top: 3px;
+  font-size: 15px;
+  font-family: Arial, Verdana, sans-serif;
+}
+
+.supplier-content > div {
+  flex: 0 1 50%;
+  /* padding: 3px; */
+}
+
+.sup-head {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 3px;
+}
+
+.sup-head > div {
+  flex: 0 1 50%;
+}
+
+.sup-fields {
+  /* display: flex;
+            flex-wrap: wrap; */
+  color: black;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.sup-values {
+  color: rgb(29, 2, 71);
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.select-field {
+  font-size: 0.95em;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.select-condition {
+  font-size: 0.95em;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.between {
+  font-size: 0.95em;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.btn-group {
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-top: 4px;
+  height: 33px;
+}
+
+.add-new-record-home {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.add-new-record-button {
+  font-size: smaller;
+  background-color: #22773e;
+  height: 25px;
+  margin-left: 86%;
+  width: max-content;
+}
+
+.export-title {
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.image {
+  height: 15px;
+  width: 15px;
+}
