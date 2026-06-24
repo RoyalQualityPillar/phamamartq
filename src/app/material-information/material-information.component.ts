@@ -8,6 +8,7 @@ import { apiEndPoints } from '../service/api-service/api-endpoints.constant';
 import { ApiService } from '../service/api-service/api.service';
 import { VerificationComponent } from '../verification/verification.component';
 import { EnquiryComponent } from '../enquiry/enquiry.component';
+import { CartComponent } from '../cart/cart.component';
 
 
 export interface userData {
@@ -17,8 +18,8 @@ export interface userData {
   selector: 'app-material-information',
   templateUrl: './material-information.component.html',
   styleUrls: ['./material-information.component.scss'],
-   standalone: true,
-    imports:[AngularMaterialModule, CommonModule,SharedModule]
+  standalone: true,
+  imports: [AngularMaterialModule, CommonModule, SharedModule]
 })
 export class MaterialInformationComponent {
   postDetail = false;
@@ -32,7 +33,7 @@ export class MaterialInformationComponent {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialog: MatDialog,
     private apiService: ApiService
-  ) {}
+  ) { }
   ngOnInit(): void {
     this.blogDescription();
   }
@@ -64,7 +65,7 @@ export class MaterialInformationComponent {
       },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {});
+    dialogRef.afterClosed().subscribe((result) => { });
   }
   blogDescription() {
     const params = { uc0001: this.data.materialInfo[0].uc0001 };
@@ -133,7 +134,18 @@ export class MaterialInformationComponent {
       },
     });
 
-    dialog.afterClosed().subscribe((result) => {});
+    dialog.afterClosed().subscribe((result) => { });
+  }
+
+  public addToCart(cart: any) {
+    const dialog = this.dialog.open(CartComponent, {
+      minWidth: '80%',
+      width: '80%',
+      disableClose: true,
+      data: {
+        materialInfo: cart,
+      },
+    });
   }
 
   public displayQty(): boolean {

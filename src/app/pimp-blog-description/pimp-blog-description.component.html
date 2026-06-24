@@ -72,6 +72,12 @@
   </div>
   <div *ngIf="registrationSection">
     <form [formGroup]="RegistrationForm" style="width: 100%; margin-top: 2px">
+       <div class="row no-gutters ms-1 me-1 dense-4 orgCode"><br />
+              <mat-form-field appearance="outline" class="col-12 px-1">
+                <mat-label>Unit Code</mat-label>
+                <input type="text" matInput readonly formControlName="unitcode"/>
+              </mat-form-field>
+            </div>
       <div class="row no-gutters ms-1 me-1 dense-4">
         <mat-form-field appearance="outline" class="col-6 px-1">
           <mat-label>First Name</mat-label>

@@ -374,8 +374,9 @@ body {
 //   margin-right: 10px; /* Space between the image and the next element */
 // }
 .custom-image {
-  width: 250px !important;
-  height: 450px !important;
+  width: 230px !important;
+  height: 370px !important;
+  //h450 and w250
   object-fit: cover; /* Ensures the image covers the entire box without distortion */
   margin-right: 10px; /* Space between the image and the next element */
 }
