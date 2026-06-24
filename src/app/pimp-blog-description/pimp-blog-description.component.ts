@@ -60,6 +60,7 @@ export class PimpBlogDescriptionComponent {
       ff0010: [''],
       ff0011: [''],
       ff0012: [''],
+      unitcode: ['PM1'],
       createdby: [''],
       status: [''],
       comments: [''],
