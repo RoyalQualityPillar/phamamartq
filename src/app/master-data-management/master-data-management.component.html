@@ -2,6 +2,113 @@
 
 <!-- Scrollable Button Section (Buttons first) -->
 
+<!-- <div class="scroll-container-text" style="margin-top: 3px;">
+  <button 
+    *ngFor="let button of buttons" 
+    (click)="onButtonClick(button)"
+    [class.active]="selectedButton === button">
+    {{ button }}
+  </button>
+</div> -->
+
+<!-- Scrolling Text Band (Displays after the buttons) -->
+<!-- <div class="notification-container">
+  <div class="notification">
+    <p>{{ scrollTextData }}</p>
+  </div>
+</div> -->
+
+<!-- <button 
+  class="cart" 
+  [class.active]="isCartActive" 
+  (click)="cart()">
+  <mat-icon>shopping_cart</mat-icon> Cart
+</button> -->
+
+<!-- <div class="alphabet-section">
+  <div class="alphabet-grid">
+    <button
+      *ngFor="let letter of alphabets"
+      class="alphabet-btn"
+      [class.active]="selectedAlphabet === letter"
+      (click)="onAlphabetClick(letter)"
+    >
+      {{ letter }}
+    </button>
+  </div>
+</div> -->
+<!-- Search Section (NEW) -->
+<!-- <div class="search-section" *ngIf="showMedicineGrid">
+  <input
+    type="text"
+    placeholder="🔍 Search medicine..."
+    [(ngModel)]="searchTerm"
+    (input)="onSearch()"
+    class="search-input"
+  />
+</div> -->
+<!-- Medicine Grid Section -->
+<!-- <div class="medicine-grid" *ngIf="showMedicineGrid">
+  <div class="medicine-card" *ngFor="let card of medicineCards" (click)="onSelectMedicine(card)"
+>
+    <div class="card-title">{{ card.ff0001 }}</div>
+    <div class="card-content">{{ card.ff0005 }}</div>
+  </div>
+</div> -->
+
+
+<!----Not-->
+<!-- <div class="slider-container">
+    <div *ngFor="let slide of slides; let i = index" [ngStyle]="{ display: currentSlideIndex === i ? 'block' : 'none' }">
+      <img [src]="slide.image" [alt]="'Slide ' + (i + 1)">
+    </div>
+  
+
+    <a class="prev" (click)="plusSlides(-1)">&#10094;</a>
+    <a class="next" (click)="plusSlides(1)">&#10095;</a>
+  </div>
+  
+
+  <div class="dot-container">
+    <span *ngFor="let slide of slides; let i = index" class="dot" (click)="currentSlide(i)" [class.active]="currentSlideIndex === i"></span>
+  </div> -->
+  <!----Not-->
+
+<div class="cart-wrapper">
+  <button
+    class="cart"
+    [class.active]="isCartActive"
+    (click)="cart()">
+    <mat-icon>shopping_cart</mat-icon>
+    Cart
+  </button>
+</div>
+<div class="slider-container">
+  <!-- Display API-loaded slides -->
+  <div
+    *ngFor="let slide of slides; let i = index"
+    [ngStyle]="{ display: currentSlideIndex === i ? 'block' : 'none' }"
+  >
+    <img [src]="slide.image" [alt]="'Slide ' + (i + 1)" />
+  </div>
+
+  <!-- Previous and Next buttons -->
+  <a class="prev" (click)="plusSlides(-1)">&#10094;</a>
+  <a class="next" (click)="plusSlides(1)">&#10095;</a>
+</div>
+
+<!-- Dot Navigation -->
+<div class="dot-container">
+  <span
+    *ngFor="let slide of slides; let i = index"
+    class="dot"
+    (click)="currentSlide(i)"
+    [class.active]="currentSlideIndex === i"
+  >
+  </span>
+</div>
+
+
 <div class="scroll-container-text" style="margin-top: 3px;">
   <button 
     *ngFor="let button of buttons" 
@@ -17,14 +124,12 @@
     <p>{{ scrollTextData }}</p>
   </div>
 </div>
-
-<button 
+<!-- <button 
   class="cart" 
   [class.active]="isCartActive" 
   (click)="cart()">
   <mat-icon>shopping_cart</mat-icon> Cart
-</button>
-
+</button> -->
 <div class="alphabet-section">
   <div class="alphabet-grid">
     <button
@@ -56,44 +161,6 @@
   </div>
 </div>
 
-<!-- <div class="slider-container">
-    <div *ngFor="let slide of slides; let i = index" [ngStyle]="{ display: currentSlideIndex === i ? 'block' : 'none' }">
-      <img [src]="slide.image" [alt]="'Slide ' + (i + 1)">
-    </div>
-  
-
-    <a class="prev" (click)="plusSlides(-1)">&#10094;</a>
-    <a class="next" (click)="plusSlides(1)">&#10095;</a>
-  </div>
-  
-
-  <div class="dot-container">
-    <span *ngFor="let slide of slides; let i = index" class="dot" (click)="currentSlide(i)" [class.active]="currentSlideIndex === i"></span>
-  </div> -->
-<div class="slider-container">
-  <!-- Display API-loaded slides -->
-  <div
-    *ngFor="let slide of slides; let i = index"
-    [ngStyle]="{ display: currentSlideIndex === i ? 'block' : 'none' }"
-  >
-    <img [src]="slide.image" [alt]="'Slide ' + (i + 1)" />
-  </div>
-
-  <!-- Previous and Next buttons -->
-  <a class="prev" (click)="plusSlides(-1)">&#10094;</a>
-  <a class="next" (click)="plusSlides(1)">&#10095;</a>
-</div>
-
-<!-- Dot Navigation -->
-<div class="dot-container">
-  <span
-    *ngFor="let slide of slides; let i = index"
-    class="dot"
-    (click)="currentSlide(i)"
-    [class.active]="currentSlideIndex === i"
-  >
-  </span>
-</div>
 
 <!-- Main Content and Sidebars -->
 <div class="container">
