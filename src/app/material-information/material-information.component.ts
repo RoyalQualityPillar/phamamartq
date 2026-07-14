@@ -29,6 +29,7 @@ export class MaterialInformationComponent {
   statusMessage: string = '';
   showPriceQty = true;
   displayPriceQty = false;
+  isVerified = false;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialog: MatDialog,
@@ -47,10 +48,12 @@ export class MaterialInformationComponent {
     });
     dialogRef.afterClosed().subscribe((result) => {
       this.data.ff0006 = result.price;
+        // this.apiService.getEmail(this.data.mail);
       this.apiService.validEmail.asObservable().subscribe((data) => {
-        if (data) {
+        if (data) {        
           this.showPriceQty = data ? false : true;
           this.displayPriceQty = data ? true : false;
+          this.isVerified = data ? true : false;
         }
       });
     });
@@ -139,7 +142,7 @@ export class MaterialInformationComponent {
 
   public addToCart(cart: any) {
     const dialog = this.dialog.open(CartComponent, {
-      minWidth: '80%',
+      minWidth: '80vw',
       width: '80%',
       disableClose: true,
       data: {

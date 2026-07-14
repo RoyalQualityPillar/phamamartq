@@ -60,15 +60,13 @@ export class PimpBlogDescriptionComponent {
       ff0010: [''],
       ff0011: [''],
       ff0012: [''],
-      unitcode: ['PM1'],
+      unitcode: [''],
       createdby: [''],
       status: [''],
       comments: [''],
     });
   }
   ngOnInit(): void {
-    console.log(this.userData);
-    console.log(this.userData.uc0001);
   }
   responseMsg: any;
   isErrorMsg: boolean = false;
@@ -83,7 +81,8 @@ export class PimpBlogDescriptionComponent {
     this.isLoading = true;
     this.isErrorMsg = false;
     this.isSuccessMsg = false;
-    const params = { mailId: this.detailConfirmation.controls['mailId'].value };
+    let  mailId = this.detailConfirmation.controls['mailId'].value
+    const params = { mailId };
     const HttpMethod = 'POST';
 
     this.apiService
@@ -92,7 +91,7 @@ export class PimpBlogDescriptionComponent {
         this.apiService.validEmail.next('validEmail');
         this.isLoading = false;
         if (response?.status) {
-          this.apiService.setEmail(this.detailConfirmation.get('mailId').value);
+          this.apiService.setEmail(mailId);
           this.isErrorMsg = false;
           this.isSuccessMsg = true;
           this.successMsg = response?.status;
@@ -114,6 +113,7 @@ export class PimpBlogDescriptionComponent {
     this.apiService
       .sendRequest(apiEndPoints.pimrvalidationCode, HttpMethod, params)
       .subscribe((response: any) => {
+        console.log(response);
         if (response?.status) {
           // Extract the price from the response if available
           const price = response.data?.price || null;
@@ -200,6 +200,8 @@ export class PimpBlogDescriptionComponent {
         console.log(response);
         this.isLoading = false;
         if (response?.status) {
+           const mail = response.data?.ff0005 || null;
+           this.apiService.setEmail(mail);
           this.loginSection = true;
           this.registrationSection = false;
           this.registrationSuccessMsg =

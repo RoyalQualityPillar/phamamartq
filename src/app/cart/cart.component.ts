@@ -5,13 +5,16 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { EnquiryComponent } from '../enquiry/enquiry.component';
-import { FormControl, FormGroup, FormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { MessageDialogComponent } from '../common/message-dialog/message-dialog.component';
 import { SharedModule } from '../common/shared.module';
 import { ApiService } from '../service/api-service/api.service';
 import { MessageService } from '../service/message.service';
+import { CookieService } from 'ngx-cookie-service';
+import { apiEndPoints } from '../service/api-service/api-endpoints.constant';
+import { LovDialogComponent } from '../common/lov-dialog/lov-dialog.component';
 export interface Cart {
   materialInfo: Pack;
 }
@@ -32,7 +35,7 @@ export interface Pack {
   ff0011: string;
   ff0012: string;
   ff0013: string;
-  unitCode: string;
+  unitcode: string;
   createdby: string;
   createdon: string;
   status: number;
@@ -52,8 +55,12 @@ export interface Pack {
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss'],
   standalone: true,
-    imports:[AngularMaterialModule, CommonModule, SharedModule, FormsModule]})
+  imports: [AngularMaterialModule, CommonModule, SharedModule, FormsModule, ReactiveFormsModule]
+})
 export class CartComponent implements OnInit, OnDestroy {
+  ViewDetailForm: FormGroup;
+  isValueSelected = false;
+  gmail: any;
   public totalDisAmt = 0;
   public afterDisAmt = 0;
   public totalAmt = 0;
@@ -76,13 +83,21 @@ export class CartComponent implements OnInit, OnDestroy {
     public dialogRef: MatDialogRef<EnquiryComponent>,
     @Inject(MAT_DIALOG_DATA) public userData: Cart,
     private apiService: ApiService,
+    public fb: FormBuilder,
     private dialog: MatDialog,
-    private messageService: MessageService
-  ) {}
+    private messageService: MessageService,
+    private cookieService: CookieService,
+  ) {
+    this.ViewDetailForm = this.fb.group({
+      orgUnitCode: ['', Validators.required],
+      salesUnitCode: ['', Validators.required],
+    });
+  }
 
   ngOnInit(): void {
-    console.log(this.userData);
+    this.onLoadInputFieldValue();
     this.materialInfoData = this.userData;
+    console.log(this.materialInfoData);
     this.enquiryForm.patchValue({
       packNo: this.materialInfoData.materialInfo.uc0001,
       materialName: this.materialInfoData.materialInfo.ff0011,
@@ -93,6 +108,21 @@ export class CartComponent implements OnInit, OnDestroy {
       quantity: this.materialInfoData.materialInfo.ff0004,
       uom: this.materialInfoData.materialInfo.ff0005,
     });
+    this.apiService
+      .getEmail()
+      .subscribe((mail: string) => {
+
+        console.log('Received Email:', mail);
+
+        this.gmail = mail;
+
+        if (mail) {
+
+          this.onLoadBUInfo();
+
+        }
+
+      });
 
     const getDiscount: number = +this.materialInfoData.materialInfo.ff0003;
     const getQuantity: number = +this.materialInfoData.materialInfo.ff0004;
@@ -119,7 +149,77 @@ export class CartComponent implements OnInit, OnDestroy {
     this.totalAmt += getFinalPrice;
     this.totalGst += getGstAmount;
   }
-
+  onLoadBUInfo() {
+    let gmail = this.gmail;
+    let saleUnitcode = 'PM1';
+    let params = { saleUnitcode, gmail };
+    this.apiService
+      .sendRequest(
+        apiEndPoints.impBUInfo,
+        'GET',
+        params,
+      )
+      .subscribe((data: any) => {
+      });
+  }
+  salesUnitCode: any;
+  paymentTermsCodeList: any;
+  isLoading = false;
+  orgUnitCode: any;
+  onLoadInputFieldValue() {
+    this.isLoading = true;
+    // this.sdService.getInputValue(this.cookieService.get('buCode')).subscribe((data: any) => {
+    let unitCode = this.cookieService.get('buCode');
+    let params = { unitCode };
+    this.apiService
+      .sendRequest(
+        apiEndPoints.dropDownSDInputList,
+        'GET',
+        params,
+      )
+      .subscribe((data: any) => {
+        this.orgUnitCode = data.data.buUnitList;
+        this.salesUnitCode = data.data.suUnitList;
+        this.paymentTermsCodeList = data.data.paymentTermsMasterList;
+        this.isLoading = false;
+      });
+  }
+  unitCodeData: any;
+  checkUnitCode() {
+    // this.sdService
+    //   .getUnitCodeDetail(
+    //     this.ViewDetailForm.controls['orgUnitCode'].value,
+    //     this.ViewDetailForm.controls['salesUnitCode'].value
+    //   )
+    let auc0001 = this.ViewDetailForm.controls['orgUnitCode'].value;
+    let buc0001 = this.ViewDetailForm.controls['salesUnitCode'].value;
+    let pageIndex = 0;
+    let size = 5;
+    let orgCode = 'PU'
+    let params = { auc0001, buc0001, orgCode, pageIndex, size };
+    this.apiService
+      .sendRequest(
+        apiEndPoints.buinfo,
+        'POST',
+        params,
+      )
+      .subscribe((data: any) => {
+        this.unitCodeData = data.data.content;
+        // this.setGSTData(this.unitCodeData);
+      });
+  }
+  isProductInfoSuccess = false;
+  onViewDetails() {
+    //todo
+    if (this.ViewDetailForm.value) {
+      if (
+        this.ViewDetailForm.controls['orgUnitCode'].value != '' &&
+        this.ViewDetailForm.controls['salesUnitCode'].value != ''
+      ) {
+        this.checkUnitCode();
+      }
+    }
+  }
   public calculateCartValues(): void {
     this.totalDisAmt = null;
     this.afterDisAmt = null;
@@ -221,6 +321,105 @@ export class CartComponent implements OnInit, OnDestroy {
         );
       }
     });
+  }
+  displayedColumns: any;
+  selectedDialogData: any;
+  openOrgUnitCodeLov() {
+    this.displayedColumns = [
+      { field: 'buunitcode', title: 'Code' },
+      { field: 'buunitname', title: 'Description' },
+    ];
+    const dialogRef = this.dialog.open(LovDialogComponent, {
+      height: '500px',
+      width: '600px',
+      data: {
+        dialogTitle: 'Organization Unit Code',
+        dialogColumns: this.displayedColumns,
+        dialogData: this.orgUnitCode,
+        lovName: 'businessUnitList',
+      },
+      disableClose: true,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.selectedDialogData = result.data;
+        this.isValueSelected = true;
+        this.ViewDetailForm.controls['orgUnitCode'].setValue(
+          result.data.buunitcode
+        );
+        this.onViewDetails();
+      }
+    });
+  }
+  isPlantCodeSuccess: boolean;
+  onChangeOrgUnitCode() {
+    if (this.ViewDetailForm.controls['orgUnitCode'].value == '') {
+      this.ViewDetailForm.controls['orgUnitCode'].setValue('');
+    } else {
+      let currentPlantCodeValue =
+        this.ViewDetailForm.controls['orgUnitCode'].value;
+      this.isPlantCodeSuccess = false;
+      this.orgUnitCode.forEach((elements) => {
+        if (elements.buunitcode == currentPlantCodeValue) {
+          this.isPlantCodeSuccess = true;
+          this.onViewDetails();
+        }
+      });
+      if (this.isPlantCodeSuccess == false) {
+        this.ViewDetailForm.controls['orgUnitCode'].setErrors({
+          incorrect: true,
+        });
+        this.openOrgUnitCodeLov();
+      }
+    }
+  }
+  openSalesUnitLov() {
+    this.displayedColumns = [
+      { field: 'suunitcode', title: 'Code' },
+      { field: 'suunitname', title: 'Description' },
+    ];
+    const dialogRef = this.dialog.open(LovDialogComponent, {
+      height: '500px',
+      width: '600px',
+      data: {
+        dialogTitle: 'Sales Unit Code',
+        dialogColumns: this.displayedColumns,
+        dialogData: this.salesUnitCode,
+        lovName: 'businessUnitList',
+      },
+      disableClose: true,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.selectedDialogData = result.data;
+        // this.isValueSelected=true;
+        this.ViewDetailForm.controls['salesUnitCode'].setValue(
+          result.data.suunitcode
+        );
+        this.onViewDetails();
+      }
+    });
+  }
+  onChangeSalesUnitCode() {
+    if (this.ViewDetailForm.controls['salesUnitCode'].value == '') {
+      this.ViewDetailForm.controls['salesUnitCode'].setValue('');
+    } else {
+      let currentPlantCodeValue =
+        this.ViewDetailForm.controls['salesUnitCode'].value;
+      this.isPlantCodeSuccess = false;
+      this.orgUnitCode.forEach((elements) => {
+        if (elements.suunitcode == currentPlantCodeValue) {
+          this.isPlantCodeSuccess = true;
+          this.onViewDetails();
+        }
+      });
+      if (this.isPlantCodeSuccess == false) {
+        this.ViewDetailForm.controls['salesUnitCode'].setErrors({
+          incorrect: true,
+        });
+        this.openSalesUnitLov();
+      }
+    }
   }
 
   ngOnDestroy(): void {

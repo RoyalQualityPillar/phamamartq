@@ -6,6 +6,8 @@ export enum apiEndPoints {
    cartValidationCode = 'imp/curt/validate-code',
   /*******Common *********/
   dropDownInputList = 'gm/input',
+  dropDownSDInputList = 'sd/input',
+  impBUInfo = 'imp/impBumaster- info',
   userProfileDropdownList = 'admin/userprofile/input',
   masterDocumet = 'dms/Documents-for-print',
   obsoletedDocumet = 'dms/obsoleted-Documents-List',
@@ -36,6 +38,7 @@ export enum apiEndPoints {
   pimrClientLogoList = 'rqp-blg/client-logo-list',
   pimrBlogList = 'imp/imp-master-list',
   blogRecord = 'imp/imp-fetchBgRecord',
+   buinfo = 'gm/bu-master/get-bu-info',
 
   /*************SMP BLOG */
   smpBlogInput = 'pujari/input',

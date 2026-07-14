@@ -116,7 +116,7 @@ export class MasterDataManagementComponent implements OnDestroy {
   leftPanelSlides: any;
   leftPanelImage(bgiCode: string) {
     let unitCode = "PM1"
-    const params = { uc0001: bgiCode, ff0001: 'LS', unitCode: unitCode};
+    const params = { uc0001: bgiCode, ff0001: 'LS', unitCode: unitCode };
     const HttpMethod = 'GET';
 
     this.apiService
@@ -126,14 +126,14 @@ export class MasterDataManagementComponent implements OnDestroy {
           this.leftPanelSlides = response.data.map((item) => ({
             image: 'data:image/png;base64,' + item.image,
           }));
-           interval(2000)
-          .pipe(takeUntil(this.$destroy))
-          .subscribe(() => {
-            if (this.leftPanelSlides.length > 0) {
-              this.currentLeftSlideIndex =
-                (this.currentLeftSlideIndex + 1) % this.leftPanelSlides.length;
-            }
-          });
+          interval(2000)
+            .pipe(takeUntil(this.$destroy))
+            .subscribe(() => {
+              if (this.leftPanelSlides.length > 0) {
+                this.currentLeftSlideIndex =
+                  (this.currentLeftSlideIndex + 1) % this.leftPanelSlides.length;
+              }
+            });
         } else {
           console.error('No left panel image data available');
         }
@@ -162,14 +162,14 @@ export class MasterDataManagementComponent implements OnDestroy {
           this.rightPanelSlides = response.data.map((item) => ({
             image: 'data:image/png;base64,' + item.image,
           }));
-            interval(2000)
-          .pipe(takeUntil(this.$destroy))
-          .subscribe(() => {
-            if (this.rightPanelSlides.length > 0) {
-              this.currentRightSlideIndex =
-                (this.currentRightSlideIndex + 1) % this.rightPanelSlides.length;
-            }
-          });
+          interval(2000)
+            .pipe(takeUntil(this.$destroy))
+            .subscribe(() => {
+              if (this.rightPanelSlides.length > 0) {
+                this.currentRightSlideIndex =
+                  (this.currentRightSlideIndex + 1) % this.rightPanelSlides.length;
+              }
+            });
         } else {
           console.error('No right panel image data available');
         }
@@ -195,15 +195,15 @@ export class MasterDataManagementComponent implements OnDestroy {
           this.slides = response.data.map((item) => ({
             image: 'data:image/png;base64,' + item.image,
           }));
-           // 🔁 Start auto-slide every 2 seconds
-        interval(2000)
-          .pipe(takeUntil(this.$destroy))
-          .subscribe(() => {
-            if (this.slides.length > 0) {
-              this.currentSlideIndex =
-                (this.currentSlideIndex + 1) % this.slides.length;
-            }
-          });
+          // 🔁 Start auto-slide every 2 seconds
+          interval(2000)
+            .pipe(takeUntil(this.$destroy))
+            .subscribe(() => {
+              if (this.slides.length > 0) {
+                this.currentSlideIndex =
+                  (this.currentSlideIndex + 1) % this.slides.length;
+              }
+            });
         } else {
           console.error('No slider data available');
         }
@@ -294,7 +294,7 @@ export class MasterDataManagementComponent implements OnDestroy {
   //Client logo
   clientLogoList: any;
   ClientLogoImage() {
-      let unitCode = "PM1"
+    let unitCode = "PM1"
     const params = { ff0001: unitCode };
     const HttpMethod = 'GET';
 
@@ -381,6 +381,8 @@ export class MasterDataManagementComponent implements OnDestroy {
             width: '1200px',
             minWidth: '80vw',
             maxWidth: '90vw',
+            height: '80vh',
+            maxHeight: '80vh',
             data: {
               materialInfo: materialInfoResult,
               pack: data,
