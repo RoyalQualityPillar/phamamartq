@@ -1,4 +1,4 @@
-<div class="padding_50_px">
+<!-- <div class="padding_50_px">
   <div class="adjust m_b_20_px">
     <div class="unit-code-container">
       <div class="unit-code-box">
@@ -16,26 +16,26 @@
             </mat-form-field>
           </div>
         </form>
-        <div class="supplier-content-code" *ngIf="data.venInfo">
+        <div class="supplier-content-code" *ngFor="let order of orderList">
           <div class="sup-head-code supply-container">
             <div class="sup-fields-code heading-font">
               Address of organization unit
             </div>
             <div class="sup-values-code">
-              {{ data.venInfo[0].ff0003 }}, {{ data.venInfo[0].ff0004 }},
-              {{ data.venInfo[0].ff0005 }},{{ data.venInfo[0].ff0007 }},{{
-                data.venInfo[0].ff0007
+              {{ order.ff0003 }}, {{ order.ff0004 }},
+              {{ order.ff0005 }},{{ order.ff0007 }},{{
+                order.ff0007
               }},<br />
               <span class="heading-font">Pincode:</span>
-              {{ data.venInfo[0].ff0010 }},<span class="heading-font">
+              {{ order.ff0010 }},<span class="heading-font">
                 Mobile: </span
-              >{{ data.venInfo[0].ff0011 }}<br /><span class="heading-font"
+              >{{ order.ff0011 }}<br /><span class="heading-font"
                 >Email: </span
-              >{{ data.venInfo[0].ff0012 }}, <br /><span class="heading-font"
+              >{{ order.ff0012 }}, <br /><span class="heading-font"
                 >PAN: </span
-              >{{ data.venInfo[0].ff0013 }},
+              >{{ order.ff0013 }},
               <span class="heading-font">GST: </span
-              >{{ data.venInfo[0].ff0014 }}
+              >{{ order.ff0014 }}
             </div>
           </div>
         </div>
@@ -79,10 +79,10 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!--item list start-->
-  <div class="container-fluid">
+  <!-- <div class="container-fluid">
     <mat-table
       [dataSource]="cart"
       matTableExporter
@@ -112,7 +112,7 @@
           >Quantity</mat-header-cell
         >
         <mat-cell *matCellDef="let row"> {{ row.ff0004 }} </mat-cell>
-      </ng-container>
+      </ng-container> -->
       <!-- <ng-container matColumnDef="ff0020">
               <mat-header-cell *matHeaderCellDef mat-sort-header
                 >Pack</mat-header-cell
@@ -120,7 +120,7 @@
               <mat-cell *matCellDef="let row"> {{ row.ff0005 }} </mat-cell>
             </ng-container> -->
 
-      <ng-container matColumnDef="ff0009">
+      <!-- <ng-container matColumnDef="ff0009">
         <mat-header-cell *matHeaderCellDef mat-sort-header
           >HSN Code</mat-header-cell
         >
@@ -143,14 +143,14 @@
           >Discount Amount</mat-header-cell
         >
         <mat-cell *matCellDef="let row"> {{ row.ff0009 }} </mat-cell>
-      </ng-container>
+      </ng-container> -->
       <!-- <ng-container matColumnDef="ff0012">
               <mat-header-cell *matHeaderCellDef mat-sort-header
                 >Discounted Rate</mat-header-cell
               >
               <mat-cell *matCellDef="let row"> {{ row.ff0019 }} </mat-cell>
             </ng-container> -->
-      <ng-container matColumnDef="ff0019">
+      <!-- <ng-container matColumnDef="ff0019">
         <mat-header-cell *matHeaderCellDef mat-sort-header
           >Total Discount</mat-header-cell
         >
@@ -183,19 +183,19 @@
       <mat-header-row *matHeaderRowDef="qtListDisplayColumn"></mat-header-row>
       <mat-row *matRowDef="let row; columns: qtListDisplayColumn"></mat-row>
     </mat-table>
-  </div>
+  </div> -->
   <!--Item list End-->
-  <div class="container-fluid">
-    <mat-card class="" *ngIf="data.totals">
+  <!-- <div class="container-fluid">
+    <mat-card class="" *ngFor="let item of order.recordList">
       <div class="supplier-content">
         <div class="sup-head row-background-color">
           <div class="sup-fields">Total Discount :</div>
-          <div class="sup-values">{{ totals.ff0015 }}</div>
+          <div class="sup-values">{{ item.ff0015 }}</div>
         </div>
         <div class="sup-head row-background-color">
           <div class="sup-fields">After Discount Sub Total Amount :</div>
           <div class="sup-values">
-            {{ totals.ff0013 }}
+            {{ item.ff0013 }}
           </div>
         </div>
 
@@ -203,7 +203,7 @@
           <div class="sup-fields">SGST :</div>
           @if(data.venInfo[0].ff0015=== data.venInfo[1].ff0015){
           <div class="sup-values">
-            {{ totals.ff0016 / 2 | number : "1.2-2" }}
+            {{ item.ff0016 / 2 | number : "1.2-2" }}
           </div>
           }
         </div>
@@ -211,26 +211,26 @@
           <div class="sup-fields">CGST</div>
           @if(data.venInfo[0].ff0015=== data.venInfo[1].ff0015){
           <div class="sup-values">
-            {{ totals.ff0016 / 2 | number : "1.2-2" }}
+            {{ item.ff0016 / 2 | number : "1.2-2" }}
           </div>
           }
         </div>
         <div class="sup-head row-background-color">
           <div class="sup-fields">IGST</div>
           <div class="sup-values">
-            {{ totals.ff0016 | number : "1.2-2" }}
+            {{ item.ff0016 | number : "1.2-2" }}
           </div>
         </div>
         <div class="sup-head row-background-color">
           <div class="sup-fields">Total GST Amount</div>
           <div class="sup-values">
-            {{ totals.ff0016 | number : "1.2-2" }}
+            {{ item.ff0016 | number : "1.2-2" }}
           </div>
         </div>
         <div class="sup-head">
           <div class="sup-fields">Total Amount :</div>
           <div class="sup-values">
-            {{ totals.ff0017 | number : "1.2-2" }}
+            {{ item.ff0017 | number : "1.2-2" }}
           </div>
         </div>
       </div>
@@ -242,4 +242,203 @@
   <button mat-raised-button class="submitButton" (click)="submission()">
     Submission
   </button>
+</div> -->
+
+
+
+
+
+
+
+
+<!---------------------CART----------------------->
+<div class="adjust">
+  <div class="example-table-container">
+<div class="p-2">
+        <div class="section_header">
+          <p class="section_header_title">Company Information</p>
+        </div>
+      </div>
+    <!--address -->
+    <div class="adjust">
+      <div class="unit-code-container">
+        <div class="unit-code-box">
+          <form [formGroup]="ViewDetailForm">
+            <div class="row no-gutters ms-1 me-1 dense-4">
+              <mat-form-field appearance="outline" class="col-12 px-1">
+                <mat-label>Oarganization Unit Code</mat-label>
+                <input type="text" matInput placeholder="Oarganization Unit Code" formControlName="orgUnitCode" readonly/>
+              </mat-form-field>
+            </div>
+          </form>
+          <div class="supplier-content-code">
+            <div class="sup-head-code supply-container">
+              <div class="sup-fields heading-font">
+                Address of organization unit
+              </div>
+              <div class="sup-values padding_4">
+                {{ orgUnitInfo.ff0005 }}, {{ orgUnitInfo.ff0006 }},
+                {{ orgUnitInfo.ff0007 }},{{ orgUnitInfo.ff0008 }},{{
+                orgUnitInfo.ff0009
+                }},<br />
+                <span class="heading-font">Pincode:</span>
+                {{ orgUnitInfo.ff0010 }},<span class="heading-font">
+                  Mobile: </span>{{ orgUnitInfo.ff0011 }}<br /><span class="heading-font">Email: </span>{{
+                orgUnitInfo.ff0012 }}, <br /><span class="heading-font">PAN: </span>{{ orgUnitInfo.ff0013 }},
+                <span class="heading-font">GST: </span>{{ orgUnitInfo.ff0014 }},
+                <span class="heading-font">State Code: </span>{{ orgUnitInfo.ff0015 }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sales-code-container" >
+        <div class="unit-code-box">
+          <form [formGroup]="ViewDetailForm">
+            <div class="row no-gutters ms-1 me-1 dense-4">
+              <mat-form-field appearance="outline" class="col-12 px-1">
+                <mat-label>Sale Unit Code</mat-label>
+                <input type="text" matInput placeholder="Sale Unit Code" formControlName="salesUnitCode" readonly/>               
+              </mat-form-field>
+            </div>
+          </form>
+          <div class="supplier-content-code" >
+            <div class="sup-head-code supply-container">
+              <div class="sup-fields heading-font">Address of sales unit</div>
+              <div class="sup-values padding_4">
+                {{ salesUnitInfo.ff0005 }}, {{ salesUnitInfo.ff0006 }},
+                {{ salesUnitInfo.ff0007 }},{{ salesUnitInfo.ff0008 }},{{
+                salesUnitInfo.ff0009
+                }},<br />
+                <span class="heading-font">Pincode:</span>
+                {{ salesUnitInfo.ff0010 }},<span class="heading-font">
+                  Mobile: </span>{{ salesUnitInfo.ff0011 }}<br /><span class="heading-font">Email: </span>{{
+                salesUnitInfo.ff0012 }}, <br /><span class="heading-font">PAN: </span>{{ salesUnitInfo.ff0013 }},
+                <span class="heading-font">GST: </span>{{ salesUnitInfo.ff0014 }},
+                <span class="heading-font">State Code: </span>{{ salesUnitInfo.ff0015 }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <app-common-title [title]="'Product Information'"></app-common-title> -->
+     <!-- <div class="float-right">
+     <button mat-raised-button class="section-add-new-record-btn" (click)="addNewRow()">
+        Add
+      </button> 
+    </div>-->
+  </div>
 </div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="p-2">
+      <div class="tabOverFlowX">
+        <table class="display-table" id="dataTable">
+          <thead>
+            <tr>
+              <th>Price Code</th>
+              <th>Product Code</th>
+              <th>Product Name</th>
+              <th>Product No</th>
+              <th col="7">Quantity</th>
+              <th col="11">Pack</th>
+              <th>HSN Code</th>
+              <th col="10">Rate</th>
+              <th col="11">% Discount</th>
+              <th col="12">Discount Amount</th>
+              <th col="12">Discount Rate</th>
+              <th col="12">Total Discount</th>
+              <th col="13">After Discount Amount</th>
+              <th>%GST</th>
+              <th>GST Amount</th>
+              <th>Final Price</th>
+            </tr>
+          </thead>
+      <tbody>
+<tr *ngFor="let item of selectedOrder?.recordList">
+
+<td>{{item.uc0001}}</td>
+<td>{{item.ff0006}}</td>
+<td>{{item.ff0011}}</td>
+<td>{{item.ff0003}}</td>
+<td>{{item.ff0007}}</td>
+<td>{{item.ff0009}}</td>
+<td>{{item.ff0004}}</td>
+<td>{{item.ff0014}}</td>
+<td>{{item.ff0015}}</td>
+<td>{{item.ff0016}}</td>
+<td>{{item.ff0015}}</td>
+<td>{{item.ff0016}}</td>
+<td>{{item.ff0016}}</td>
+<td>{{item.ff0012}}</td>
+<td>{{item.ff0017}}</td>
+<td>{{item.ff0016}}</td>
+
+</tr>
+</tbody>
+        </table>
+      </div>
+    </div>
+    <div class="container-fluid" *ngFor="let order of selectedOrder?.sumGroup">
+      <mat-card class="">
+        <div class="supplier-content">
+          <div class="sup-head row-background-color">
+            <div class="sup-fields">Total Discount :</div>
+            <div class="sup-values">
+              {{ order.ff0008 | number : "1.2-2" }}
+            </div>
+          </div>
+          <div class="sup-head row-background-color">
+            <div class="sup-fields">After Discount Sub Total Amount :</div>
+            <div class="sup-values">
+              {{ order.ff0009 | number : "1.2-2" }}
+            </div>
+          </div>
+
+          <div class="sup-head">
+            <div class="sup-fields">SGST :</div>
+            <div class="sup-values">
+              {{ order.ff0003 | number : "1.2-2" }}
+            </div>
+          </div>
+          <div class="sup-head">
+            <div class="sup-fields">CGST</div>
+            <div class="sup-values">
+              {{ order.ff0004 | number : "1.2-2" }}
+            </div>
+          </div>
+          <div class="sup-head row-background-color">
+            <div class="sup-fields">IGST</div>
+            <div class="sup-values">
+              {{ order.ff0005 | number : "1.2-2" }}
+            </div>
+          </div>
+          <div class="sup-head row-background-color">
+            <div class="sup-fields">Total GST Amount</div>
+            <div class="sup-values">
+              {{ order.ff0006 | number : "1.2-2" }}
+            </div>
+          </div>
+          <div class="sup-head">
+            <div class="sup-fields">Total Amount :</div>
+            <div class="sup-values">
+              {{ order.ff0007 | number : "1.2-2" }}
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<div class="submit">
+  <div>
+    <button mat-raised-button mat-dialog-close>Close</button>
+  </div>
+ <button mat-raised-button class="submitButton" (click)="submission()">
+    Submission
+  </button>
+</div>
+

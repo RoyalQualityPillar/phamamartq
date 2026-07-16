@@ -19,6 +19,7 @@ import { SharedModule } from '../common/shared.module';
 import { CartSubmissionComponent } from '../cart-submission/cart-submission.component';
 import { MaterialInformationComponent } from '../material-information/material-information.component';
 import { PimpBlogDescriptionComponent } from '../pimp-blog-description/pimp-blog-description.component';
+import { CartItemsList } from '../cart-items-list/cart-items-list';
 
 @Component({
   selector: 'app-master-data-management',
@@ -361,6 +362,17 @@ export class MasterDataManagementComponent implements OnDestroy {
     });
     dialogRef.afterClosed().subscribe((result) => { });
   }
+  onLoadDescription2() {
+    const dialogRef = this.dialog.open(PimpBlogDescriptionComponent, {
+      minWidth: '80%',
+      data: { uc0001: this.packNumber.uc0001, type: 'cart' },
+    });
+    dialogRef.afterClosed().subscribe((result) => { 
+      if (result?.verified) {
+      this.cart();
+    }
+    });
+  }
 
   public materialInfo(data: any, index: any): void {
     console.log(data);
@@ -496,6 +508,19 @@ export class MasterDataManagementComponent implements OnDestroy {
   isCartActive = false;
   public cart(): void {
     this.isCartActive = true;
+
+ const dialogRef = this.dialog.open(PimpBlogDescriptionComponent, {
+    minWidth: '500px',
+    disableClose: true,
+    data: {
+      type: 'cart'
+    }
+  });
+ dialogRef.afterClosed().subscribe((result) => {
+   if (!result?.verified) {
+    this.isCartActive = false;
+    return;
+  }
     const unitCode = "PM1"
     const getInInfo = this.apiService.getVenInfo(unitCode, 0, 100);
 
@@ -503,13 +528,19 @@ export class MasterDataManagementComponent implements OnDestroy {
       .pipe(takeUntil(this.$destroy))
       .subscribe(([venInfo]) => {
         if (venInfo) {
-          const dialogRef = this.dialog.open(CartSubmissionComponent, {
-            data: {
-              venInfo: venInfo?.data?.content,
-              totals: this.totals,
-            },
-            width: '1200px',
-            height: '600px',
+          // const dialogRef = this.dialog.open(CartSubmissionComponent, {
+          //   width: '1500px',
+          // height: '800px',
+           const dialogRef = this.dialog.open(CartItemsList, {
+            width: '500px',
+          height: '500px',
+          data: {
+            venInfo: venInfo?.data?.content,
+            totals: this.totals,
+
+            // Pass OTP verified email
+            gmail: result.mail
+          }
           });
 
           // ✅ now dialogRef is defined, we can subscribe
@@ -518,8 +549,8 @@ export class MasterDataManagementComponent implements OnDestroy {
           });
         }
       });
+    });
   }
-
 
   ngOnDestroy(): void {
     this.$destroy.next(null);
