@@ -27,6 +27,8 @@ import { MasterDataManagementComponent } from './master-data-management/master-d
 import { PimpBlogDescriptionComponent } from './pimp-blog-description/pimp-blog-description.component';
 import { CartSubmissionComponent } from './cart-submission/cart-submission.component';
 import { PrintConfirmationComponent } from './print-confirmation/print-confirmation.component';
+import { CartComponent } from './cart/cart.component';
+import { CartItemsList } from './cart-items-list/cart-items-list';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { PrintConfirmationComponent } from './print-confirmation/print-confirmat
   imports: [
     PimpBlogDescriptionComponent,
     CartSubmissionComponent,
+    CartComponent,
+    CartItemsList,
     MasterDataManagementComponent,
     BrowserModule,
     HttpClientModule,

@@ -17,6 +17,7 @@ import { SharedModule } from '../common/shared.module';
 
 export interface userData {
   uc0001: any;
+   type: string;
 }
 
 @Component({
@@ -119,7 +120,24 @@ export class PimpBlogDescriptionComponent {
           const price = response.data?.price || null;
 
           // Close the dialog and pass the price back to the parent component
-          this.dialogRef.close({ price });
+         if (this.userData.type === 'price') {
+
+          this.dialogRef.close({
+            verified: true,
+            price: price,
+             mail: params.ff0005
+          });
+
+        }
+
+        else if (this.userData.type === 'cart') {
+
+          this.dialogRef.close({
+            verified: true,
+            mail:params.ff0005
+          });
+
+        }
         }
       });
   }

@@ -17,22 +17,22 @@
               </mat-form-field>
             </div>
           </form>
-          <div class="supplier-content-code" *ngIf="this.unitCodeData">
+          <div class="supplier-content-code" *ngIf="this.orgUnitInfo">
             <div class="sup-head-code supply-container">
               <div class="sup-fields heading-font">
                 Address of organization unit
               </div>
               <div class="sup-values padding_4">
-                {{ unitCodeData[0].ff0003 }}, {{ unitCodeData[0].ff0004 }},
-                {{ unitCodeData[0].ff0005 }},{{ unitCodeData[0].ff0007 }},{{
-                unitCodeData[0].ff0007
+                {{ orgUnitInfo.ff0003 }}, {{ orgUnitInfo.ff0004 }},
+                {{ orgUnitInfo.ff0005 }},{{ orgUnitInfo.ff0007 }},{{
+                orgUnitInfo.ff0007
                 }},<br />
                 <span class="heading-font">Pincode:</span>
-                {{ unitCodeData[0].ff0008 }},<span class="heading-font">
-                  Mobile: </span>{{ unitCodeData[0].ff0009 }}<br /><span class="heading-font">Email: </span>{{
-                unitCodeData[0].ff0010 }}, <br /><span class="heading-font">PAN: </span>{{ unitCodeData[0].ff0011 }},
-                <span class="heading-font">GST: </span>{{ unitCodeData[0].ff0012 }},
-                <span class="heading-font">State Code: </span>{{ unitCodeData[0].ff0013 }}
+                {{ orgUnitInfo.ff0008 }},<span class="heading-font">
+                  Mobile: </span>{{ orgUnitInfo.ff0009 }}<br /><span class="heading-font">Email: </span>{{
+                orgUnitInfo.ff0010 }}, <br /><span class="heading-font">PAN: </span>{{ orgUnitInfo.ff0011 }},
+                <span class="heading-font">GST: </span>{{ orgUnitInfo.ff0012 }},
+                <span class="heading-font">State Code: </span>{{ orgUnitInfo.ff0013 }}
               </div>
             </div>
           </div>
@@ -48,20 +48,20 @@
               </mat-form-field>
             </div>
           </form>
-          <div class="supplier-content-code" *ngIf="this.unitCodeData">
+          <div class="supplier-content-code" *ngIf="this.salesUnitInfo">
             <div class="sup-head-code supply-container">
               <div class="sup-fields heading-font">Address of sales unit</div>
               <div class="sup-values padding_4">
-                {{ unitCodeData[1].ff0003 }}, {{ unitCodeData[1].ff0004 }},
-                {{ unitCodeData[1].ff0005 }},{{ unitCodeData[1].ff0007 }},{{
-                unitCodeData[1].ff0007
+                {{ salesUnitInfo.ff0005 }}, {{ salesUnitInfo.ff0006 }},
+                {{ salesUnitInfo.ff0007 }},{{ salesUnitInfo.ff0008 }},{{
+                salesUnitInfo.ff0009
                 }},<br />
                 <span class="heading-font">Pincode:</span>
-                {{ unitCodeData[1].ff0008 }},<span class="heading-font">
-                  Mobile: </span>{{ unitCodeData[1].ff0017 }}<br /><span class="heading-font">Email: </span>{{
-                unitCodeData[1].ff0015 }}, <br /><span class="heading-font">PAN: </span>{{ unitCodeData[1].ff0011 }},
-                <span class="heading-font">GST: </span>{{ unitCodeData[1].ff0012 }},
-                <span class="heading-font">State Code: </span>{{ unitCodeData[1].ff0014 }}
+                {{ salesUnitInfo.ff0010 }},<span class="heading-font">
+                  Mobile: </span>{{ salesUnitInfo.ff0011 }}<br /><span class="heading-font">Email: </span>{{
+                salesUnitInfo.ff0012 }}, <br /><span class="heading-font">PAN: </span>{{ salesUnitInfo.ff0013 }},
+                <span class="heading-font">GST: </span>{{ salesUnitInfo.ff0014 }},
+                <span class="heading-font">State Code: </span>{{ salesUnitInfo.ff0015 }}
               </div>
             </div>
           </div>

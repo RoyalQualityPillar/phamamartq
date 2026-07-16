@@ -3,7 +3,11 @@ export enum apiEndPoints {
   pimrInputData = 'imp/input',
   pimpMedicineList = 'imp/selected-material-list',
   pimpMaterialList = 'imp/imp-material-list',
-   cartValidationCode = 'imp/curt/validate-code',
+  cartValidationCode = 'imp/curt/validate-code',
+  cartItemsList = 'imp/curt-item-list',
+  cartList = 'imp/curt-list',
+  cartDelete = 'imp/curt-delete',
+  cartSubmission = 'imp/cart-submission/save-update',
   /*******Common *********/
   dropDownInputList = 'gm/input',
   dropDownSDInputList = 'sd/input',
@@ -38,7 +42,7 @@ export enum apiEndPoints {
   pimrClientLogoList = 'rqp-blg/client-logo-list',
   pimrBlogList = 'imp/imp-master-list',
   blogRecord = 'imp/imp-fetchBgRecord',
-   buinfo = 'gm/bu-master/get-bu-info',
+  buinfo = 'gm/bu-master/get-bu-info',
 
   /*************SMP BLOG */
   smpBlogInput = 'pujari/input',

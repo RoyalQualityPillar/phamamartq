@@ -15,6 +15,7 @@ import { MessageService } from '../service/message.service';
 import { CookieService } from 'ngx-cookie-service';
 import { apiEndPoints } from '../service/api-service/api-endpoints.constant';
 import { LovDialogComponent } from '../common/lov-dialog/lov-dialog.component';
+import { NotificationService } from '../common/notification.service';
 export interface Cart {
   materialInfo: Pack;
 }
@@ -47,6 +48,7 @@ export interface Pack {
   getGstAmount: number;
   finalPrice: number;
   getDiscountAmount: number;
+
 }
 
 
@@ -69,6 +71,9 @@ export class CartComponent implements OnInit, OnDestroy {
   public CGST: number;
   public IGST: number;
   public materialInfoData: Cart;
+  public cartData: any;
+  public orgUnitInfo: any;
+  public salesUnitInfo: any;
   public enquiryForm = new FormGroup({
     packNo: new FormControl(''),
     materialName: new FormControl(''),
@@ -87,6 +92,7 @@ export class CartComponent implements OnInit, OnDestroy {
     private dialog: MatDialog,
     private messageService: MessageService,
     private cookieService: CookieService,
+       private notificationService: NotificationService,
   ) {
     this.ViewDetailForm = this.fb.group({
       orgUnitCode: ['', Validators.required],
@@ -151,8 +157,8 @@ export class CartComponent implements OnInit, OnDestroy {
   }
   onLoadBUInfo() {
     let gmail = this.gmail;
-    let saleUnitcode = 'PM1';
-    let params = { saleUnitcode, gmail };
+    let orgCode = 'PM1';
+    let params = { orgCode, gmail };
     this.apiService
       .sendRequest(
         apiEndPoints.impBUInfo,
@@ -160,7 +166,28 @@ export class CartComponent implements OnInit, OnDestroy {
         params,
       )
       .subscribe((data: any) => {
+        console.log(data)
+        this.cartData = data.data;
+        this.setGSTData(this.cartData);
+        this.orgUnitInfo = this.cartData[0];
+        this.salesUnitInfo = this.cartData[1];
+
+        this.ViewDetailForm.patchValue({
+          orgUnitCode: this.orgUnitInfo.uc0001,
+          salesUnitCode: this.salesUnitInfo.ff0001
+        });
       });
+  }
+  setGSTData(data) {
+    if (data[0].ff0013 == data[1].ff0015) {
+      this.CGST = this.totalGst / 2;
+      this.SGST = this.totalGst / 2;
+      this.IGST = 0;
+    } else {
+      this.IGST = this.totalGst;
+      this.SGST = 0;
+      this.CGST = 0;
+    }
   }
   salesUnitCode: any;
   paymentTermsCodeList: any;
@@ -258,23 +285,24 @@ export class CartComponent implements OnInit, OnDestroy {
     const data = {
       sumGroup: {
         uc0001: this.materialInfoData.materialInfo.uc0001,
-        ff0001: this.materialInfoData.materialInfo.totalDiscount,
-        ff0002: this.materialInfoData.materialInfo.afterdiscountAmount,
+        unitCode: this.cookieService.get('buCode'),
+        ff0001: '',
+        ff0002: '',
         ff0003: this.SGST,
         ff0004: this.CGST,
         ff0005: this.IGST,
         ff0006: this.materialInfoData.materialInfo.getGstAmount,
         ff0007: this.materialInfoData.materialInfo.finalPrice,
-        ff0008: 0,
-        ff0009: 0,
+        ff0008: this.materialInfoData.materialInfo.totalDiscount,
+        ff0009: this.materialInfoData.materialInfo.afterdiscountAmount,
         ff0010: 0,
-        ff0011: '',
-        ff0012: '',
+        ff0011: this.orgUnitInfo.uc0001,
+        ff0012: this.salesUnitInfo.ff0001,
         ff0013: '',
         ff0014: '',
         ff0015: '',
         ff0016: '',
-        ff0017: '',
+        ff0017: this.gmail,
         createdby: this.materialInfoData.materialInfo.createdby,
         status: this.materialInfoData.materialInfo.status,
         comments: this.materialInfoData.materialInfo.comments,
@@ -293,12 +321,17 @@ export class CartComponent implements OnInit, OnDestroy {
           ff0009: this.materialInfoData.materialInfo.ff0005,
           ff0010: this.materialInfoData.materialInfo.ff0003,
           ff0011: this.materialInfoData.materialInfo.ff0011,
-          ff0012: this.materialInfoData.materialInfo.ff0003,
+          ff0012: Number(this.materialInfoData.materialInfo.ff0003),
           ff0013: this.materialInfoData.materialInfo.getDiscountAmount,
           ff0014: this.materialInfoData.materialInfo.discountedRate,
           ff0015: this.materialInfoData.materialInfo.totalDiscount,
           ff0016: this.materialInfoData.materialInfo.afterdiscountAmount,
           ff0017: this.materialInfoData.materialInfo.getGstAmount,
+          unitCode: this.cookieService.get('buCode'),
+          lc0001: '',
+          lc0002: '',
+          lc0003: '',
+          lc0004: '',
           createdby: this.materialInfoData.materialInfo.createdby,
           status: this.materialInfoData.materialInfo.status,
           comments: this.materialInfoData.materialInfo.comments,
@@ -315,10 +348,10 @@ export class CartComponent implements OnInit, OnDestroy {
           },
         });
       } else {
-        this.messageService.sendSnackbar(
-          'success',
-          'Cart info Record inserted successfully'
-        );
+        this.notificationService.showSuccess(data.status, () => {
+            console.log('Success Snackbar Closed');
+          });
+          this.dialogRef.close();
       }
     });
   }
