@@ -90,8 +90,8 @@ public cartRecords: any[] = [];
     }
   }
 onLoadCartList() {
-    let gmail = this.data.gmail;
-    let params = { gmail };
+    let uc0001 = this.data.data.uc0001;
+    let params = { uc0001 };
     this.apiService
       .sendRequest(
         apiEndPoints.cartList,
@@ -101,12 +101,22 @@ onLoadCartList() {
       .subscribe((data: any) => {
         console.log(data)
         this.cartList = data.data;
-        this.selectedOrder = this.cartList[0];
-         this.cartRecords = this.selectedOrder.recordList;
+          console.log('Clicked Row:', this.data.data);
+  console.log('Cart List:', this.cartList);
+        const selectedUc0001 = this.data.data.uc0001;
+  console.log('Selected UC0001:', selectedUc0001);
+      this.selectedOrder = this.cartList.find(
+        (item: any) => item.sumGroup.uc0001 === selectedUc0001
+      );
+  console.log('Selected Order:', this.selectedOrder);
+      if (this.selectedOrder) {
+        this.cartRecords = this.selectedOrder.recordList;
+  console.log('Cart Records:', this.cartRecords);
         this.ViewDetailForm.patchValue({
           orgUnitCode: this.selectedOrder.sumGroup.ff0011,
           salesUnitCode: this.selectedOrder.sumGroup.ff0012
         });
+      }
       });
     }
   // public submission(): void {
@@ -180,7 +190,32 @@ onLoadCartList() {
   //   });
   // }
 
+removeRowAttachment(row: any) {
+   let  uc0001 = row.uc0001;
+    const params = { uc0001 };
+    const HttpMethod = 'POST';
+     this.apiService
+         .sendRequest(apiEndPoints.cartDelete, HttpMethod, params)
+         .subscribe((data: any) => {
+          if (data.errorInfo == null) {
 
+          this.selectedOrder.recordList =
+              this.selectedOrder.recordList.filter(
+                  (item: any) => item.uc0001 !== row.uc0001
+              );
+
+      } else {
+
+          this.dialog.open(MessageDialogComponent,{
+              data:{
+                  heading:'Error',
+                  message:data.errorInfo.message
+              }
+          });
+
+      }
+         });
+  }
    public submission(): void {
      let gmail = this.data.gmail;
     let params = { gmail };

@@ -37,7 +37,7 @@ export class CartItemsList implements OnInit {
     'ff0006',
     'createdon',
     'createdby',
-    'action',
+    'action',    
   ];
   constructor(
     private cookieService: CookieService,
@@ -50,7 +50,7 @@ export class CartItemsList implements OnInit {
   ) { }
   ngOnInit(): void {
     console.log(this.data)
-     let  gmail = 'agarammounika0505@gmail.com'
+     let  gmail = this.data.gmail;
     const params = { gmail };
     const HttpMethod = 'GET';
     this.apiService
@@ -87,6 +87,7 @@ export class CartItemsList implements OnInit {
           height: '500px',
           data: {
             venInfo: this.data,
+            data:row,
             gmail: this.data.gmail
           }
           });

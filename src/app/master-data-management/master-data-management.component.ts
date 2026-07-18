@@ -532,7 +532,8 @@ export class MasterDataManagementComponent implements OnDestroy {
           //   width: '1500px',
           // height: '800px',
            const dialogRef = this.dialog.open(CartItemsList, {
-            width: '500px',
+            width: '1500px',
+            maxWidth:'2000px',
           height: '500px',
           data: {
             venInfo: venInfo?.data?.content,
