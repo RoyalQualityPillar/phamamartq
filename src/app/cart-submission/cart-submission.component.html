@@ -338,6 +338,7 @@
         <table class="display-table" id="dataTable">
           <thead>
             <tr>
+              <th></th>
               <th>Price Code</th>
               <th>Product Code</th>
               <th>Product Name</th>
@@ -357,74 +358,78 @@
             </tr>
           </thead>
       <tbody>
-<tr *ngFor="let item of selectedOrder?.recordList">
-
-<td>{{item.uc0001}}</td>
-<td>{{item.ff0006}}</td>
-<td>{{item.ff0011}}</td>
+<tr *ngFor="let item of cartRecords">
+<td>
+  <button mat-icon-button color="warn" (click)="removeRowAttachment(item)">
+              <mat-icon>remove_shopping_cart</mat-icon>
+            </button>
+</td>
 <td>{{item.ff0003}}</td>
+<td>{{item.ff0010}}</td>
+<td>{{item.ff0005}}</td>
+<td>{{item.ff0001}}</td>
 <td>{{item.ff0007}}</td>
 <td>{{item.ff0009}}</td>
-<td>{{item.ff0004}}</td>
+<td>{{item.ff0006}}</td>
+<td>{{item.ff0008}}</td>
+<td>{{item.ff0012}}</td>
+<td>{{item.ff0013}}</td>
 <td>{{item.ff0014}}</td>
 <td>{{item.ff0015}}</td>
 <td>{{item.ff0016}}</td>
-<td>{{item.ff0015}}</td>
-<td>{{item.ff0016}}</td>
-<td>{{item.ff0016}}</td>
-<td>{{item.ff0012}}</td>
+<td>{{item.ff0011}}</td>
 <td>{{item.ff0017}}</td>
-<td>{{item.ff0016}}</td>
+<td>{{selectedOrder.sumGroup.ff0007}}</td>
 
 </tr>
 </tbody>
         </table>
       </div>
     </div>
-    <div class="container-fluid" *ngFor="let order of selectedOrder?.sumGroup">
+    <div class="container-fluid" *ngIf="selectedOrder?.sumGroup">
       <mat-card class="">
         <div class="supplier-content">
           <div class="sup-head row-background-color">
             <div class="sup-fields">Total Discount :</div>
             <div class="sup-values">
-              {{ order.ff0008 | number : "1.2-2" }}
+              {{ selectedOrder.sumGroup.ff0008 | number : "1.2-2" }}
             </div>
           </div>
           <div class="sup-head row-background-color">
             <div class="sup-fields">After Discount Sub Total Amount :</div>
             <div class="sup-values">
-              {{ order.ff0009 | number : "1.2-2" }}
+              {{ selectedOrder.sumGroup.ff0009 | number : "1.2-2" }}
             </div>
           </div>
 
           <div class="sup-head">
             <div class="sup-fields">SGST :</div>
             <div class="sup-values">
-              {{ order.ff0003 | number : "1.2-2" }}
+              {{ selectedOrder.sumGroup.ff0003 | number : "1.2-2" }}
             </div>
           </div>
           <div class="sup-head">
             <div class="sup-fields">CGST</div>
             <div class="sup-values">
-              {{ order.ff0004 | number : "1.2-2" }}
+              {{ selectedOrder.sumGroup.ff0004 | number : "1.2-2" }}
             </div>
           </div>
           <div class="sup-head row-background-color">
             <div class="sup-fields">IGST</div>
             <div class="sup-values">
-              {{ order.ff0005 | number : "1.2-2" }}
+              {{ selectedOrder.sumGroup.ff0005 | number : "1.2-2" }}
             </div>
           </div>
           <div class="sup-head row-background-color">
             <div class="sup-fields">Total GST Amount</div>
             <div class="sup-values">
-              {{ order.ff0006 | number : "1.2-2" }}
+              {{ selectedOrder.sumGroup.ff0006 | number : "1.2-2" }}
             </div>
           </div>
           <div class="sup-head">
             <div class="sup-fields">Total Amount :</div>
             <div class="sup-values">
-              {{ order.ff0007 | number : "1.2-2" }}
+              {{ selectedOrder.sumGroup.ff0007 | number : "1.2-2" }}
             </div>
           </div>
         </div>

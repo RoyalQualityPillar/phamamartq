@@ -1,33 +1,33 @@
-<div class="table-box">
+<div class="table-box tabOverFlowX">
   <mat-table [dataSource]="fgUnderTestListData" matSort id="dataTable" class="table_background_color">
           <ng-container matColumnDef="ff0001">
       <mat-header-cell *matHeaderCellDef mat-sort-header>
-        Product Order Number
+        Product Order Code
       </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{ row.uc0001 }} </mat-cell>
     </ng-container>
      <ng-container matColumnDef="ff0002">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Product Number
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Organisation Code
       </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.uc0001 }} </mat-cell>
+      <mat-cell *matCellDef="let row"> {{ row.ff0011 }} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="ff0003">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Product Code
+      <mat-header-cell *matHeaderCellDef mat-sort-header>SaleUnit Code
       </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.ff0002 }} </mat-cell>
+      <mat-cell *matCellDef="let row"> {{ row.ff0012 }} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="ff0004">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Product Name
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Mail ID
       </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.ff0001 }} </mat-cell>
+      <mat-cell *matCellDef="let row"> {{ row.ff0017 }} </mat-cell>
     </ng-container>    
 
     <ng-container matColumnDef="ff0006">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Quantity
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Total Amount
       </mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.ff0010 }}</mat-cell>
+      <mat-cell *matCellDef="let row">{{ row.ff0009 }}</mat-cell>
     </ng-container>
     
     <ng-container matColumnDef="createdon">
