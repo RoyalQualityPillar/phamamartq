@@ -105,7 +105,6 @@ export class MasterDataManagementComponent implements OnDestroy {
     this.apiService
       .sendRequest(apiEndPoints.pimrInputData, HttpMethod, params)
       .subscribe((response: any) => {
-        console.log(response.data?.bgimpLsList[0].bgiCode);
         if (response.data?.bgimpLsList[0].bgiCode) {
           this.leftPanelImage(response.data?.bgimpLsList[0].bgiCode);
         }
@@ -242,18 +241,14 @@ export class MasterDataManagementComponent implements OnDestroy {
   totalPosts: any;
   pageSize = 5;
   blogList(buttonValue: any) {
-    console.log(buttonValue);
     const params = { ff0011: buttonValue };
     const HttpMethod = 'GET';
 
     this.apiService
       .sendRequest(apiEndPoints.pimrBlogList, HttpMethod, params)
       .subscribe((response: any) => {
-        console.log(response);
-        console.log(response.data[0]?.ff0002);
         this.packNumber = response?.data[0]?.ff0002;
         this.totalPosts = response.data?.length;
-        console.log(this.totalPosts);
         this.blogPosts = response.data?.map((item) => ({
           uc0001: item.uc0001,
           image: 'data:image/png;base64,' + item.image,
@@ -367,15 +362,14 @@ export class MasterDataManagementComponent implements OnDestroy {
       minWidth: '80%',
       data: { uc0001: this.packNumber.uc0001, type: 'cart' },
     });
-    dialogRef.afterClosed().subscribe((result) => { 
+    dialogRef.afterClosed().subscribe((result) => {
       if (result?.verified) {
-      this.cart();
-    }
+        this.cart();
+      }
     });
   }
 
   public materialInfo(data: any, index: any): void {
-    console.log(data);
     const pack = this.apiService.packList(data.uc0001);
     const materialInfo = this.apiService.materialInfo(data.uc0001);
 
@@ -409,7 +403,6 @@ export class MasterDataManagementComponent implements OnDestroy {
     // this.apiService.packList(data.uc0001).subscribe((data) => {});
   }
   // onButtonClick(button: any) {
-  //   console.log(button);
   //   this.buttonBarList.forEach((ele) => {
   //     if (ele.mattNumber == button) {
   //       let buttonValue = ele.mattName;
@@ -425,7 +418,6 @@ export class MasterDataManagementComponent implements OnDestroy {
   onButtonClick(button: any) {
     this.selectedButton = button; // track active scroll button
     this.selectedAlphabet = null; // clear any alphabet selection
-    console.log(button);
     this.buttonBarList.forEach((ele) => {
       if (ele.mattNumber == button) {
         let buttonValue = ele.mattName;
@@ -453,7 +445,6 @@ export class MasterDataManagementComponent implements OnDestroy {
 
   // Update onAlphabetClick to also update filteredMedicineCards
   // onAlphabetClick(letter: string) {
-  //   console.log(letter)
   //   this.selectedAlphabet = letter;
   //   this.showMedicineGrid = true;
 
@@ -503,53 +494,52 @@ export class MasterDataManagementComponent implements OnDestroy {
   callAlphabetApi(letter: string) {
     this.selectedAlphabet = letter;
     // Replace with your actual API call logic
-    console.log(`API called for: ${letter}`);
   }
   isCartActive = false;
   public cart(): void {
     this.isCartActive = true;
 
- const dialogRef = this.dialog.open(PimpBlogDescriptionComponent, {
-    minWidth: '500px',
-    disableClose: true,
-    data: {
-      type: 'cart'
-    }
-  });
- dialogRef.afterClosed().subscribe((result) => {
-   if (!result?.verified) {
-    this.isCartActive = false;
-    return;
-  }
-    const unitCode = "PM1"
-    const getInInfo = this.apiService.getVenInfo(unitCode, 0, 100);
+    const dialogRef = this.dialog.open(PimpBlogDescriptionComponent, {
+      minWidth: '500px',
+      disableClose: true,
+      data: {
+        type: 'cart'
+      }
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (!result?.verified) {
+        this.isCartActive = false;
+        return;
+      }
+      const unitCode = "PM1"
+      const getInInfo = this.apiService.getVenInfo(unitCode, 0, 100);
 
-    forkJoin([getInInfo.pipe(take(1))])
-      .pipe(takeUntil(this.$destroy))
-      .subscribe(([venInfo]) => {
-        if (venInfo) {
-          // const dialogRef = this.dialog.open(CartSubmissionComponent, {
-          //   width: '1500px',
-          // height: '800px',
-           const dialogRef = this.dialog.open(CartItemsList, {
-            width: '1500px',
-            maxWidth:'2000px',
-          height: '500px',
-          data: {
-            venInfo: venInfo?.data?.content,
-            totals: this.totals,
+      forkJoin([getInInfo.pipe(take(1))])
+        .pipe(takeUntil(this.$destroy))
+        .subscribe(([venInfo]) => {
+          if (venInfo) {
+            // const dialogRef = this.dialog.open(CartSubmissionComponent, {
+            //   width: '1500px',
+            // height: '800px',
+            const dialogRef = this.dialog.open(CartItemsList, {
+              width: '1500px',
+              maxWidth: '2000px',
+              height: '500px',
+              data: {
+                venInfo: venInfo?.data?.content,
+                totals: this.totals,
 
-            // Pass OTP verified email
-            gmail: result.mail
+                // Pass OTP verified email
+                gmail: result.mail
+              }
+            });
+
+            // ✅ now dialogRef is defined, we can subscribe
+            dialogRef.afterClosed().subscribe(() => {
+              this.isCartActive = false; // remove highlight after dialog closes
+            });
           }
-          });
-
-          // ✅ now dialogRef is defined, we can subscribe
-          dialogRef.afterClosed().subscribe(() => {
-            this.isCartActive = false; // remove highlight after dialog closes
-          });
-        }
-      });
+        });
     });
   }
 

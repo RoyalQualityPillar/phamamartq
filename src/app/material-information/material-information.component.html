@@ -1,101 +1,100 @@
 <div class="screenOverFlowY">
   <div *ngFor="let data of data.materialInfo" class="margin-top_100px">
-      <div class="row margin-20_px">
-        <div class="col-6 image-bg">
-          <img [src]="data.image" class="blog-image" width="580px" height="246px" />
-        </div>
-        <div class="col-6 product-name">
-          <h1>{{ data.ff0012 }}</h1>
-          <table class="info">
-            <tbody>
-              <tr>
-                <th>CATALOG No:</th>
-                <td>{{ data.uc0001 }}</td>
-              </tr>
-              <tr>
-                <th>Material CAS No:</th>
-                <td>{{ data.ff0003 }}</td>
-              </tr>
-              <tr>
-                <th>Material Name:</th>
-                <td>{{ data.ff0012 }}</td>
-              </tr>
-              <tr>
-                <th>Mol.F.</th>
-                <td>{{ data.ff0004 }}</td>
-              </tr>
-
-              <tr>
-                <th>Mol.Wt.</th>
-                <td>{{ data.ff0005 }}</td>
-              </tr>
-              <tr>
-                <th>API CAS No</th>
-                <td>{{ data.ff0015 }}</td>
-              </tr>
-              <tr>
-                <th>API CAS Name</th>
-                <td>{{ data.ff0001 }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+    <div class="row margin-20_px">
+      <div class="col-6 image-bg">
+        <img [src]="data.image" class="blog-image" width="580px" height="246px" />
       </div>
+      <div class="col-6 product-name">
+        <h1>{{ data.ff0012 }}</h1>
+        <table class="info">
+          <tbody>
+            <tr>
+              <th>CATALOG No:</th>
+              <td>{{ data.uc0001 }}</td>
+            </tr>
+            <tr>
+              <th>Material CAS No:</th>
+              <td>{{ data.ff0003 }}</td>
+            </tr>
+            <tr>
+              <th>Material Name:</th>
+              <td>{{ data.ff0012 }}</td>
+            </tr>
+            <tr>
+              <th>Mol.F.</th>
+              <td>{{ data.ff0004 }}</td>
+            </tr>
+
+            <tr>
+              <th>Mol.Wt.</th>
+              <td>{{ data.ff0005 }}</td>
+            </tr>
+            <tr>
+              <th>API CAS No</th>
+              <td>{{ data.ff0015 }}</td>
+            </tr>
+            <tr>
+              <th>API CAS Name</th>
+              <td>{{ data.ff0001 }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 
 
   <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" class="margin-10_px">
     <mat-tab label="Material Information" backgroundColor="primary">
       <div class="margin-top_100px margin-20_px">
-          <table>
-            <thead>
-              <tr>
-                <th>Pack No</th>
-                <th>Material Name</th>
-                <th>Material Cas NO</th>
-                <th>Pack Name</th>
-                <th>Pack Size</th>
-                <th>No of packs</th>
-                <th>Quantity</th>
-                <th>UOM</th>
-                <th>Price For Unit (Rate)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let data of data.pack; let i = index">
-                <td>{{ data.uc0001 }}</td>
-                <td>{{ data.ff0011 }}</td>
-                <td>{{ data.ff0013 }}</td>
-                <td>{{ data.ff0001 }}</td>
-                <td>{{ data.ff0002 }}</td>
-                <td>{{ data.ff0003 }}</td>
-                <td>{{ data.ff0004 }}</td>
-                <td>{{ data.ff0005 }}</td>
-                <td class="width_100 icons-style padding_bottom_22px">
-                  <div class="">
-                    <mat-icon *ngIf="showPriceQty" (click)="onLoadDescription()"
-                      class="font-size_24_px cursor">price_change</mat-icon>
+        <table>
+          <thead>
+            <tr>
+              <th>Pack No</th>
+              <th>Material Name</th>
+              <th>Material Cas NO</th>
+              <th>Pack Name</th>
+              <th>Pack Size</th>
+              <th>No of packs</th>
+              <th>Quantity</th>
+              <th>UOM</th>
+              <th>Price For Unit (Rate)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of data.pack; let i = index">
+              <td>{{ data.uc0001 }}</td>
+              <td>{{ data.ff0011 }}</td>
+              <td>{{ data.ff0013 }}</td>
+              <td>{{ data.ff0001 }}</td>
+              <td>{{ data.ff0002 }}</td>
+              <td>{{ data.ff0003 }}</td>
+              <td>{{ data.ff0004 }}</td>
+              <td>{{ data.ff0005 }}</td>
+              <td class="width_100 icons-style padding_bottom_22px">
+                <div class="">
+                  <mat-icon *ngIf="showPriceQty" (click)="onLoadDescription()"
+                    class="font-size_24_px cursor">price_change</mat-icon>
 
-                    <span *ngIf="displayPriceQty" [ngStyle]="{
+                  <span *ngIf="displayPriceQty" [ngStyle]="{
                     display: displayPriceQty === true ? 'block' : 'none'
                   }">{{ data.ff0006 }}</span>
-                  </div>
+                </div>
 
-                  <!-- <div>
+                <!-- <div>
                     <i class="fa fa-shopping-cart font-size_24_px cursor" (click)="cart(data)"></i>
                   </div> -->
-                  <div>
-                    <mat-icon
-                     *ngIf="isVerified"
-                    class="font-size_24_px cursor" (click)="addToCart(data)">shopping_cart</mat-icon>
-                  </div>
-                  <div>
-                    <mat-icon class="font-size_24_px cursor" (click)="enquiry(data)">work_history</mat-icon>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                <div>
+                  <mat-icon *ngIf="isVerified" class="font-size_24_px cursor"
+                    (click)="addToCart(data)">shopping_cart</mat-icon>
+                </div>
+                <div>
+                  <mat-icon class="font-size_24_px cursor" (click)="enquiry(data)">work_history</mat-icon>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </mat-tab>
     <mat-tab label="Mono Graph" (click)="blogDescription()">
