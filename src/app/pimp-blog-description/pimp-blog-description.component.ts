@@ -114,7 +114,6 @@ export class PimpBlogDescriptionComponent {
     this.apiService
       .sendRequest(apiEndPoints.pimrvalidationCode, HttpMethod, params)
       .subscribe((response: any) => {
-        console.log(response);
         if (response?.status) {
           // Extract the price from the response if available
           const price = response.data?.price || null;
@@ -215,7 +214,6 @@ export class PimpBlogDescriptionComponent {
         this.RegistrationForm.value
       )
       .subscribe((response: any) => {
-        console.log(response);
         this.isLoading = false;
         if (response?.status) {
            const mail = response.data?.ff0005 || null;

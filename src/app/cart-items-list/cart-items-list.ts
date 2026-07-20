@@ -20,8 +20,8 @@ import { CartSubmissionComponent } from '../cart-submission/cart-submission.comp
   selector: 'app-cart-items-list',
   templateUrl: './cart-items-list.html',
   styleUrl: './cart-items-list.scss',
-   standalone: true,
-    imports:[AngularMaterialModule, CommonModule, SharedModule, ReactiveFormsModule]
+  standalone: true,
+  imports: [AngularMaterialModule, CommonModule, SharedModule, ReactiveFormsModule]
 })
 export class CartItemsList implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
@@ -29,7 +29,7 @@ export class CartItemsList implements OnInit {
   public fgUnderTestListData: any;
   public dataSource: any;
   public isLoading = false;
-     destroy$ = new Subject<void>()
+  destroy$ = new Subject<void>()
   displayedColumns = [
     'ff0001',
     'ff0003',
@@ -37,7 +37,7 @@ export class CartItemsList implements OnInit {
     'ff0006',
     'createdon',
     'createdby',
-    'action',    
+    'action',
   ];
   constructor(
     private cookieService: CookieService,
@@ -45,22 +45,21 @@ export class CartItemsList implements OnInit {
     private notificationService: NotificationService,
     // private remoteLoader: RemoteComponentLoaderService,
     private router: Router,
-     private apiService: ApiService,
-     @Inject(MAT_DIALOG_DATA) public data,
+    private apiService: ApiService,
+    @Inject(MAT_DIALOG_DATA) public data,
   ) { }
   ngOnInit(): void {
-    console.log(this.data)
-     let  gmail = this.data.gmail;
+    let gmail = this.data.gmail;
     const params = { gmail };
     const HttpMethod = 'GET';
     this.apiService
-         .sendRequest(apiEndPoints.cartItemsList, HttpMethod, params)
-         .subscribe((data: any) => {
-      this.dataSource = data.data;
-      this.fgUnderTestListData = new MatTableDataSource(this.dataSource);
-      this.fgUnderTestListData.sort = this.sort;
-      this.fgUnderTestListData.paginator = this.paginator;
-    });
+      .sendRequest(apiEndPoints.cartItemsList, HttpMethod, params)
+      .subscribe((data: any) => {
+        this.dataSource = data.data;
+        this.fgUnderTestListData = new MatTableDataSource(this.dataSource);
+        this.fgUnderTestListData.sort = this.sort;
+        this.fgUnderTestListData.paginator = this.paginator;
+      });
   }
   public pageChanged(event): void {
     if (this.fgUnderTestListData.length == GlobalConstants.size) {
@@ -78,59 +77,59 @@ export class CartItemsList implements OnInit {
   }
 
 
-  public  submit(row:any){
+  public submit(row: any) {
 
 
     const dialogRef = this.dialog.open(CartSubmissionComponent, {
-            width: '1500px',
-            maxWidth:'2000px',
-          height: '500px',
-          data: {
-            venInfo: this.data,
-            data:row,
-            gmail: this.data.gmail
-          }
-          });
+      width: '1500px',
+      maxWidth: '2000px',
+      height: '500px',
+      data: {
+        venInfo: this.data,
+        data: row,
+        gmail: this.data.gmail
+      }
+    });
 
 
-//       const component = await this.remoteLoader.loadComponentByKey(
-//           'CommonESignatureComponent'
-//         );
-  
-//     const dialogRef = this.dialog.open(component, {
-//       height: '300px',
-//       width: '600px',
-//       data: {},
-//       disableClose: true,
-//     });
-  
-//     dialogRef.afterClosed().subscribe((result) => {
-  
-//       if (result && result.data) {
-  
-//     this.whService.saveFgUnderTestLList(row.uc0001, row.status).subscribe((data: any) => {
-//       if (data.errorInfo != null) {
-//         this.isLoading = false;
-//         this.dialog.open(MessageDialogComponent, {
-//           data: {
-//             message: data.errorInfo.message,
-//             heading: 'Error Information',
-//           },
-//         });
-//       } else {
-//         this.isLoading = false;
-//         this.notificationService.showSuccess(data.status, () => {
-//           // this.fgUnderTestListData.reset();
-//           //                    timer(2000)
-//           //                                .pipe(takeUntil(this.destroy$))
-//           //                                .subscribe(() => {
-//                                            this.router.navigateByUrl('/rqpoperationui/wh/sm-module-admin');
-//                                          //});
-//         });
-//       }
-//     });
-//   }
-// });
-}
+    //       const component = await this.remoteLoader.loadComponentByKey(
+    //           'CommonESignatureComponent'
+    //         );
+
+    //     const dialogRef = this.dialog.open(component, {
+    //       height: '300px',
+    //       width: '600px',
+    //       data: {},
+    //       disableClose: true,
+    //     });
+
+    //     dialogRef.afterClosed().subscribe((result) => {
+
+    //       if (result && result.data) {
+
+    //     this.whService.saveFgUnderTestLList(row.uc0001, row.status).subscribe((data: any) => {
+    //       if (data.errorInfo != null) {
+    //         this.isLoading = false;
+    //         this.dialog.open(MessageDialogComponent, {
+    //           data: {
+    //             message: data.errorInfo.message,
+    //             heading: 'Error Information',
+    //           },
+    //         });
+    //       } else {
+    //         this.isLoading = false;
+    //         this.notificationService.showSuccess(data.status, () => {
+    //           // this.fgUnderTestListData.reset();
+    //           //                    timer(2000)
+    //           //                                .pipe(takeUntil(this.destroy$))
+    //           //                                .subscribe(() => {
+    //                                            this.router.navigateByUrl('/rqpoperationui/wh/sm-module-admin');
+    //                                          //});
+    //         });
+    //       }
+    //     });
+    //   }
+    // });
+  }
 }
 

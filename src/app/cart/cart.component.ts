@@ -103,7 +103,6 @@ export class CartComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.onLoadInputFieldValue();
     this.materialInfoData = this.userData;
-    console.log(this.materialInfoData);
     this.enquiryForm.patchValue({
       packNo: this.materialInfoData.materialInfo.uc0001,
       materialName: this.materialInfoData.materialInfo.ff0011,
@@ -117,11 +116,7 @@ export class CartComponent implements OnInit, OnDestroy {
     this.apiService
       .getEmail()
       .subscribe((mail: string) => {
-
-        console.log('Received Email:', mail);
-
         this.gmail = mail;
-
         if (mail) {
 
           this.onLoadBUInfo();
@@ -349,7 +344,6 @@ export class CartComponent implements OnInit, OnDestroy {
         });
       } else {
         this.notificationService.showSuccess(data.status, () => {
-            console.log('Success Snackbar Closed');
           });
           this.dialogRef.close();
       }
