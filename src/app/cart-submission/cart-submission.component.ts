@@ -20,6 +20,7 @@ export class CartSubmissionComponent implements OnInit {
   ViewDetailForm: FormGroup;
   total: any;
   cart: any;
+  isPreviousOrder:boolean=false;
   public orgUnitInfo: any;
   public salesUnitInfo: any;
   public cartList: any[] = [];
@@ -63,6 +64,7 @@ export class CartSubmissionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isPreviousOrder = this.data.isPreviousOrder;
     this.orgUnitInfo = this.data.venInfo.venInfo[0];
     this.salesUnitInfo = this.data.venInfo.venInfo[1];
     this.onLoadCartList();
@@ -90,9 +92,10 @@ export class CartSubmissionComponent implements OnInit {
   onLoadCartList() {
     let uc0001 = this.data.data.uc0001;
     let params = { uc0001 };
+    const api = this.data.isPreviousOrder ? apiEndPoints.previousCartList : apiEndPoints.cartList
     this.apiService
       .sendRequest(
-        apiEndPoints.cartList,
+        api,
         'GET',
         params,
       )
@@ -228,7 +231,6 @@ export class CartSubmissionComponent implements OnInit {
     },
       recordList: recordList,
     };
- console.log(payload);
     this.apiService.cartSubmission(payload).subscribe((data) => {
       if (data.errorInfo != null) {
         this.dialog.open(MessageDialogComponent, {

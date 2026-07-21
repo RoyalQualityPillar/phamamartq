@@ -154,7 +154,6 @@ export class PimpBlogDescriptionComponent {
           this.postDetail = true;
           this.loginSection = false;
           this.registrationSection = false;
-
           if (response.data) {
             // Check if the Base64 content is an image or text
             if (isImageBase64(response.data)) {

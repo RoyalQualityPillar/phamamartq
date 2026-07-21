@@ -187,9 +187,9 @@
 
 <div class="submit">
   <div>
-    <button mat-raised-button mat-dialog-close>Close</button>
+    <button *ngIf="!isPreviousOrder" mat-raised-button mat-dialog-close>Close</button>
   </div>
-  <button mat-raised-button class="submitButton" (click)="submission()">
+  <button  *ngIf="!isPreviousOrder" mat-raised-button class="submitButton" (click)="submission()">
     Submission
   </button>
 </div>

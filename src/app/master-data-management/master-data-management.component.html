@@ -85,6 +85,12 @@
     <mat-icon>shopping_cart</mat-icon>
     Cart
   </button>
+  <button
+    class="cart"
+    [class.active]="isCartActive"
+    (click)="previousOrders()">
+    Previous Orders
+  </button>
 </div>
 <div class="slider-container">
   <!-- Display API-loaded slides -->
@@ -319,7 +325,7 @@
     <div class="row">
       <div class="col-md-3">
         <a href="index.html"
-          ><img src="./assets/logo1.png" alt="" class="img-fluid logo-footer"
+          ><img src="./assets/pharmamart.png" alt="" class="img-fluid logo-footer"
         /></a>
         <div class="footer-about">
           <p>
@@ -380,14 +386,22 @@
           <!-- <img src="./assets/add.png" alt="" class="img-fluid"> -->
           <div class="address-links">
             <li class="address1">
-              <i class="fa-solid fa-location-dot"></i> Kolathur ramankulam-
-              Malappuram Dt Kerala 679338
+              <i class="fa-solid fa-location-dot"></i> Pharma Mart Q
+            </li>
+             <li class="address1">
+              <i class="fa-solid fa-location-dot"></i> House No.40 , Road No6 ,Mothevari Thota,
+            </li>
+             <li class="address1">
+              <i class="fa-solid fa-location-dot"></i>  Ashok Nagar,Eluru , Eluru (Dt), Andrapradesh 
+            </li>
+             <li class="address1">
+              <i class="fa-solid fa-location-dot"></i> Pin 534001 
             </li>
             <li>
-              <a href=""><i class="fa-solid fa-phone"></i> +91 90904500112</a>
-            </li>
-            <li>
-              <a href=""><i class="fa-solid fa-envelope"></i> mail.com</a>
+              <a href=""><i class="fa-solid fa-phone"></i>Mobile No:+91 9618948094,+91 9000420782</a>
+            </li>           
+            <li class="address1">
+              <i class="fa-solid fa-location-dot"></i>Drug Lisence No: AP/05/01/2022-31353
             </li>
           </div>
         </div>

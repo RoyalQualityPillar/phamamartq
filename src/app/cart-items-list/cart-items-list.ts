@@ -26,7 +26,7 @@ import { CartSubmissionComponent } from '../cart-submission/cart-submission.comp
 export class CartItemsList implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
-  public fgUnderTestListData: any;
+  public curtItemsListData: any;
   public dataSource: any;
   public isLoading = false;
   destroy$ = new Subject<void>()
@@ -52,17 +52,20 @@ export class CartItemsList implements OnInit {
     let gmail = this.data.gmail;
     const params = { gmail };
     const HttpMethod = 'GET';
+  const api = this.data.isPreviousOrder
+    ? apiEndPoints.previousCartItemsList
+    : apiEndPoints.cartItemsList;
     this.apiService
-      .sendRequest(apiEndPoints.cartItemsList, HttpMethod, params)
+      .sendRequest(api, HttpMethod, params)
       .subscribe((data: any) => {
         this.dataSource = data.data;
-        this.fgUnderTestListData = new MatTableDataSource(this.dataSource);
-        this.fgUnderTestListData.sort = this.sort;
-        this.fgUnderTestListData.paginator = this.paginator;
+        this.curtItemsListData = new MatTableDataSource(this.dataSource);
+        this.curtItemsListData.sort = this.sort;
+        this.curtItemsListData.paginator = this.paginator;
       });
   }
   public pageChanged(event): void {
-    if (this.fgUnderTestListData.length == GlobalConstants.size) {
+    if (this.curtItemsListData.length == GlobalConstants.size) {
       if (
         event.length - (event.pageIndex + 1) * event.pageSize == 0 ||
         event.length < event.pageSize
@@ -78,8 +81,6 @@ export class CartItemsList implements OnInit {
 
 
   public submit(row: any) {
-
-
     const dialogRef = this.dialog.open(CartSubmissionComponent, {
       width: '1500px',
       maxWidth: '2000px',
@@ -87,7 +88,8 @@ export class CartItemsList implements OnInit {
       data: {
         venInfo: this.data,
         data: row,
-        gmail: this.data.gmail
+        gmail: this.data.gmail,
+        isPreviousOrder: this.data.isPreviousOrder
       }
     });
 
@@ -119,7 +121,7 @@ export class CartItemsList implements OnInit {
     //       } else {
     //         this.isLoading = false;
     //         this.notificationService.showSuccess(data.status, () => {
-    //           // this.fgUnderTestListData.reset();
+    //           // this.curtItemsListData.reset();
     //           //                    timer(2000)
     //           //                                .pipe(takeUntil(this.destroy$))
     //           //                                .subscribe(() => {
