@@ -4,6 +4,8 @@ export enum apiEndPoints {
   pimpMedicineList = 'imp/selected-material-list',
   pimpMaterialList = 'imp/imp-material-list',
   cartValidationCode = 'imp/curt/validate-code',
+  previousCartItemsList = 'imp/previous-curt-item-list',
+  previousCartList = 'imp/previous-curt-list',
   cartItemsList = 'imp/curt-item-list',
   cartList = 'imp/curt-list',
   cartDelete = 'imp/curt-delete',

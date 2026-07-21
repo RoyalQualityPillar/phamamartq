@@ -495,8 +495,15 @@ export class MasterDataManagementComponent implements OnDestroy {
     this.selectedAlphabet = letter;
     // Replace with your actual API call logic
   }
-  isCartActive = false;
   public cart(): void {
+  this.openCart(false);
+}
+
+public previousOrders(): void {
+  this.openCart(true);
+}
+  isCartActive = false;
+  public openCart(isPreviousOrder: boolean): void {
     this.isCartActive = true;
 
     const dialogRef = this.dialog.open(PimpBlogDescriptionComponent, {
@@ -528,15 +535,13 @@ export class MasterDataManagementComponent implements OnDestroy {
               data: {
                 venInfo: venInfo?.data?.content,
                 totals: this.totals,
-
-                // Pass OTP verified email
-                gmail: result.mail
+                gmail: result.mail,
+                isPreviousOrder: isPreviousOrder
               }
             });
 
-            // ✅ now dialogRef is defined, we can subscribe
             dialogRef.afterClosed().subscribe(() => {
-              this.isCartActive = false; // remove highlight after dialog closes
+              this.isCartActive = false; 
             });
           }
         });
