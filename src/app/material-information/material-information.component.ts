@@ -13,6 +13,7 @@ import { CartComponent } from '../cart/cart.component';
 
 export interface userData {
   uc0001: any;
+  materialInfo: any;
 }
 @Component({
   selector: 'app-material-information',
@@ -44,13 +45,14 @@ export class MaterialInformationComponent {
       disableClose: true,
       data: {
         uc0001: this.data.materialInfo[0].uc0001,
+        materialInfo: this.data.materialInfo[0]
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
       this.data.ff0006 = result.price;
-        // this.apiService.getEmail(this.data.mail);
+      // this.apiService.getEmail(this.data.mail);
       this.apiService.validEmail.asObservable().subscribe((data) => {
-        if (data) {        
+        if (data) {
           this.showPriceQty = data ? false : true;
           this.displayPriceQty = data ? true : false;
           this.isVerified = data ? true : false;

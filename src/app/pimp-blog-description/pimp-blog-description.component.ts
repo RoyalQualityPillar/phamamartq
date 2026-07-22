@@ -17,19 +17,21 @@ import { SharedModule } from '../common/shared.module';
 
 export interface userData {
   uc0001: any;
-   type: string;
+  type: string;
+  materialInfo: any;
 }
 
 @Component({
-    selector: 'app-pimp-blog-description',
-    templateUrl: './pimp-blog-description.component.html',
-    styleUrls: ['./pimp-blog-description.component.scss'],
-     standalone: true,
-    imports:[AngularMaterialModule, CommonModule, SharedModule, ReactiveFormsModule]
+  selector: 'app-pimp-blog-description',
+  templateUrl: './pimp-blog-description.component.html',
+  styleUrls: ['./pimp-blog-description.component.scss'],
+  standalone: true,
+  imports: [AngularMaterialModule, CommonModule, SharedModule, ReactiveFormsModule]
 })
 export class PimpBlogDescriptionComponent {
   detailConfirmation: FormGroup;
   RegistrationForm: FormGroup;
+  public materialInformation: any;
   constructor(
     private fb: FormBuilder,
     private cookieService: CookieService,
@@ -68,6 +70,7 @@ export class PimpBlogDescriptionComponent {
     });
   }
   ngOnInit(): void {
+    this.materialInformation = this.userData.materialInfo;
   }
   responseMsg: any;
   isErrorMsg: boolean = false;
@@ -82,7 +85,7 @@ export class PimpBlogDescriptionComponent {
     this.isLoading = true;
     this.isErrorMsg = false;
     this.isSuccessMsg = false;
-    let  mailId = this.detailConfirmation.controls['mailId'].value
+    let mailId = this.detailConfirmation.controls['mailId'].value
     const params = { mailId };
     const HttpMethod = 'POST';
 
@@ -107,7 +110,11 @@ export class PimpBlogDescriptionComponent {
     const params = {
       ff0005: this.detailConfirmation.controls['mailId'].value,
       inputCode: this.detailConfirmation.controls['otp'].value,
-      csCode:'C'
+      csCode: 'C',
+      materialname: this.materialInformation.ff0012,
+      Casno: this.materialInformation.ff0003,
+      materialNo: this.materialInformation.uc0001
+
     };
     const HttpMethod = 'POST';
 
@@ -119,24 +126,24 @@ export class PimpBlogDescriptionComponent {
           const price = response.data?.price || null;
 
           // Close the dialog and pass the price back to the parent component
-         if (this.userData.type === 'price') {
+          if (this.userData.type === 'price') {
 
-          this.dialogRef.close({
-            verified: true,
-            price: price,
-             mail: params.ff0005
-          });
+            this.dialogRef.close({
+              verified: true,
+              price: price,
+              mail: params.ff0005
+            });
 
-        }
+          }
 
-        else if (this.userData.type === 'cart') {
+          else if (this.userData.type === 'cart') {
 
-          this.dialogRef.close({
-            verified: true,
-            mail:params.ff0005
-          });
+            this.dialogRef.close({
+              verified: true,
+              mail: params.ff0005
+            });
 
-        }
+          }
         }
       });
   }
@@ -215,8 +222,8 @@ export class PimpBlogDescriptionComponent {
       .subscribe((response: any) => {
         this.isLoading = false;
         if (response?.status) {
-           const mail = response.data?.ff0005 || null;
-           this.apiService.setEmail(mail);
+          const mail = response.data?.ff0005 || null;
+          this.apiService.setEmail(mail);
           this.loginSection = true;
           this.registrationSection = false;
           this.registrationSuccessMsg =
