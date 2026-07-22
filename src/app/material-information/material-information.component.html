@@ -2,7 +2,12 @@
   <div *ngFor="let data of data.materialInfo" class="margin-top_100px">
     <div class="row margin-20_px">
       <div class="col-6 image-bg">
-        <img [src]="data.image" class="blog-image" width="580px" height="246px" />
+        <div class="watermark-container">
+          <img [src]="data.image" class="blog-image" />
+          <div class="watermark-pattern">
+          </div>
+        </div>
+
       </div>
       <div class="col-6 product-name">
         <h1>{{ data.ff0012 }}</h1>
