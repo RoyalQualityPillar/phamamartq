@@ -96,6 +96,11 @@ export class MasterDataManagementComponent implements OnDestroy {
     // this.blogList();
     this.buttonBarLabelText();
     this.ClientLogoImage();
+    this.ClientLogos();
+    this.RightImages();
+    this.RightImages2();
+    this.leftImages();
+    this.leftImages2();
     window.scrollTo(0, 0);
   }
   getInputData() {
@@ -110,7 +115,7 @@ export class MasterDataManagementComponent implements OnDestroy {
         }
         if (response.data?.bgimpRsList[0].bgiCode) {
           this.RightPanelImage(response.data?.bgimpRsList[0].bgiCode);
-        }
+        }       
       });
   }
   leftPanelSlides: any;
@@ -306,6 +311,168 @@ export class MasterDataManagementComponent implements OnDestroy {
         }
       });
   }
+clientLogos:any[] = [];
+   ClientLogos() {
+    let unitCode = "PM1"
+    let ff0001 = "CLOGO"
+    const params = { ff0001, unitCode };
+    const HttpMethod = 'GET';
+
+    this.apiService
+      .sendRequest(apiEndPoints.pimrClientLogo, HttpMethod, params)
+      .subscribe((response: any) => {
+        console.log(response);
+        this.clientLogos = response.data;
+        console.log(this.clientLogos);
+        if (response.data && Array.isArray(response.data)) {
+          this.clientLogos = response.data.map((item) => ({
+            image: 'data:image/png;base64,' + item.image,
+          }));
+        } else {
+          console.error('No right panel image data available');
+        }
+      });
+  }
+  leftSlides: any;
+  leftImages() {
+    let unitCode = "PM1"
+    let ff0001 = "LS1"
+    const params = { ff0001, unitCode };
+    const HttpMethod = 'GET';
+
+    this.apiService
+      .sendRequest(apiEndPoints.pimls1image, HttpMethod, params)
+      .subscribe((response: any) => {
+        if (response.data && Array.isArray(response.data)) {
+          this.leftSlides = response.data.map((item) => ({
+            image: 'data:image/png;base64,' + item.image,
+          }));
+          interval(2000)
+            .pipe(takeUntil(this.$destroy))
+            .subscribe(() => {
+              if (this.leftSlides.length > 0) {
+                this.currentLeftSlidesIndex =
+                  (this.currentLeftSlidesIndex + 1) % this.leftSlides.length;
+              }
+            });
+        } else {
+          console.error('No left panel image data available');
+        }
+      });
+  }
+  currentLeftSlidesIndex = 0;
+
+  changeLeftSlides(step: number) {
+    this.currentLeftSlidesIndex =
+      (this.currentLeftSlidesIndex + step + this.leftSlides.length) %
+      this.leftSlides.length;
+  }
+  currentLeftSlides(index: number) {
+    this.currentLeftSlidesIndex = index;
+  }
+  rightSlides: any;
+  RightImages() {
+    let unitCode = "PM1"
+    let ff0001 = "RS1"
+    const params = { ff0001, unitCode };
+    const HttpMethod = 'GET';
+
+    this.apiService
+      .sendRequest(apiEndPoints.pimrs1image, HttpMethod, params)
+      .subscribe((response: any) => {
+        if (response.data && Array.isArray(response.data)) {
+          this.rightSlides = response.data.map((item) => ({
+            image: 'data:image/png;base64,' + item.image,
+          }));
+          interval(2000)
+            .pipe(takeUntil(this.$destroy))
+            .subscribe(() => {
+              if (this.rightSlides.length > 0) {
+                this.currentRightSlidesIndex =
+                  (this.currentRightSlidesIndex + 1) % this.rightSlides.length;
+              }
+            });
+        } else {
+          console.error('No right panel image data available');
+        }
+      });
+  }
+  currentRightSlidesIndex = 0;
+
+  currentRightSlides(index: number) {
+    this.currentRightSlideIndex = index;
+  }
+
+ leftSlides2: any;
+  leftImages2() {
+    let unitCode = "PM1"
+    let ff0001 = "LS2"
+    const params = { ff0001, unitCode };
+    const HttpMethod = 'GET';
+
+    this.apiService
+      .sendRequest(apiEndPoints.pimls2image, HttpMethod, params)
+      .subscribe((response: any) => {
+        if (response.data && Array.isArray(response.data)) {
+          this.leftSlides2 = response.data.map((item) => ({
+            image: 'data:image/png;base64,' + item.image,
+          }));
+          interval(2000)
+            .pipe(takeUntil(this.$destroy))
+            .subscribe(() => {
+              if (this.leftSlides2.length > 0) {
+                this.currentLeftSlidesIndex2 =
+                  (this.currentLeftSlidesIndex2 + 1) % this.leftSlides2.length;
+              }
+            });
+        } else {
+          console.error('No left panel image data available');
+        }
+      });
+  }
+  currentLeftSlidesIndex2 = 0;
+
+  changeLeftSlides2(step: number) {
+    this.currentLeftSlidesIndex2 =
+      (this.currentLeftSlidesIndex2 + step + this.leftSlides2.length) %
+      this.leftSlides2.length;
+  }
+  currentLeftSlides2(index: number) {
+    this.currentLeftSlidesIndex2 = index;
+  }
+  rightSlides2: any;
+  RightImages2() {
+    let unitCode = "PM1"
+    let ff0001 = "RS2"
+    const params = { ff0001, unitCode };
+    const HttpMethod = 'GET';
+
+    this.apiService
+      .sendRequest(apiEndPoints.pimrs2image, HttpMethod, params)
+      .subscribe((response: any) => {
+        if (response.data && Array.isArray(response.data)) {
+          this.rightSlides2 = response.data.map((item) => ({
+            image: 'data:image/png;base64,' + item.image,
+          }));
+          interval(2000)
+            .pipe(takeUntil(this.$destroy))
+            .subscribe(() => {
+              if (this.rightSlides2.length > 0) {
+                this.currentRightSlidesIndex2 =
+                  (this.currentRightSlidesIndex2 + 1) % this.rightSlides2.length;
+              }
+            });
+        } else {
+          console.error('No right panel image data available');
+        }
+      });
+  }
+  currentRightSlidesIndex2 = 0;
+
+  currentRightSlides2(index: number) {
+    this.currentRightSlidesIndex2 = index;
+  }
+
 
   scrollText() {
     const params = { uc0001: 'SP1S001' };

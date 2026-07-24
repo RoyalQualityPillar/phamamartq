@@ -5,53 +5,78 @@ body {
 }
 
 .slider-container {
-  position: relative; /* Position relative for absolute elements */
-  max-width: 100%; /* Limit width to 100% */
-  margin: auto; /* Center the slider */
-  overflow: hidden; /* Hide overflow from images */
+  position: relative;
+  /* Position relative for absolute elements */
+  max-width: 100%;
+  /* Limit width to 100% */
+  margin: auto;
+  /* Center the slider */
+  overflow: hidden;
+  /* Hide overflow from images */
 }
 
 .slider-container img {
-  width: 100%; /* Make images responsive */
-  display: block; /* Display block to prevent space below images */
+  width: 100%;
+  /* Make images responsive */
+  display: block;
+  /* Display block to prevent space below images */
 }
 
 .prev,
 .next {
-  cursor: pointer; /* Change cursor to pointer */
-  position: absolute; /* Positioning for navigation arrows */
-  top: 50%; /* Center vertically */
-  transform: translateY(-50%); /* Adjust vertical centering */
-  color: white; /* Color for arrows */
-  font-size: 24px; /* Size for arrows */
-  padding: 16px; /* Padding around arrows */
+  cursor: pointer;
+  /* Change cursor to pointer */
+  position: absolute;
+  /* Positioning for navigation arrows */
+  top: 50%;
+  /* Center vertically */
+  transform: translateY(-50%);
+  /* Adjust vertical centering */
+  color: white;
+  /* Color for arrows */
+  font-size: 24px;
+  /* Size for arrows */
+  padding: 16px;
+  /* Padding around arrows */
 }
 
 .prev {
-  left: 10px; /* Position left */
+  left: 10px;
+  /* Position left */
 }
 
 .next {
-  right: 10px; /* Position right */
+  right: 10px;
+  /* Position right */
 }
 
 .dot-container {
-  text-align: center; /* Center the dots */
-  margin-top: 10px; /* Space above dots */
+  text-align: center;
+  /* Center the dots */
+  margin-top: 10px;
+  /* Space above dots */
 }
 
 .dot {
-  height: 10px; /* Dot height */
-  width: 10px; /* Dot width */
-  margin: 0 5px; /* Spacing between dots */
-  background-color: gray; /* Inactive dot color */
-  border-radius: 50%; /* Make dots circular */
-  display: inline-block; /* Display as inline block */
-  cursor: pointer; /* Cursor on hover */
+  height: 10px;
+  /* Dot height */
+  width: 10px;
+  /* Dot width */
+  margin: 0 5px;
+  /* Spacing between dots */
+  background-color: gray;
+  /* Inactive dot color */
+  border-radius: 50%;
+  /* Make dots circular */
+  display: inline-block;
+  /* Display as inline block */
+  cursor: pointer;
+  /* Cursor on hover */
 }
 
 .dot.active {
-  background-color: black; /* Active dot color */
+  background-color: black;
+  /* Active dot color */
 }
 
 // .scroll-container-text {
@@ -104,13 +129,16 @@ body {
   0% {
     transform: translateX(100%);
   }
+
   100% {
     transform: translateX(-100%);
   }
 }
+
 .scroll-container {
   position: relative;
-  overflow: hidden; /* Prevent overflow */
+  overflow: hidden;
+  /* Prevent overflow */
   width: 100%;
   background-color: #f5f5f5;
   padding: 10px;
@@ -120,8 +148,10 @@ body {
   .scroll-text {
     display: inline-block;
     white-space: nowrap;
-    padding-left: 100%; /* Start the text from off-screen to the right */
-    animation: scroll-text 15s linear infinite; /* Set animation duration */
+    padding-left: 100%;
+    /* Start the text from off-screen to the right */
+    animation: scroll-text 15s linear infinite;
+    /* Set animation duration */
     font-size: 20px;
     color: #ff0000;
   }
@@ -129,10 +159,13 @@ body {
 
 @keyframes scroll-text {
   0% {
-    transform: translateX(100%); /* Start fully off-screen to the right */
+    transform: translateX(100%);
+    /* Start fully off-screen to the right */
   }
+
   100% {
-    transform: translateX(-100%); /* End fully off-screen to the left */
+    transform: translateX(-100%);
+    /* End fully off-screen to the left */
   }
 }
 
@@ -208,11 +241,16 @@ body {
   //     }
   //   }
 }
+
 .blog-image {
-  width: 100%; /* Makes the image take the full width of the blog post */
-  height: auto; /* Ensures the aspect ratio is maintained */
-  border-radius: 8px; /* Optional: Adds rounded corners to the image */
-  margin-bottom: 15px; /* Adds spacing below the image */
+  width: 100%;
+  /* Makes the image take the full width of the blog post */
+  height: auto;
+  /* Ensures the aspect ratio is maintained */
+  border-radius: 8px;
+  /* Optional: Adds rounded corners to the image */
+  margin-bottom: 15px;
+  /* Adds spacing below the image */
 }
 
 .view-toggle {
@@ -241,6 +279,7 @@ body {
   flex-grow: 1;
   margin: 0 20px;
 }
+
 //change
 // .list-view .blog-post {
 //   display: block;
@@ -249,21 +288,28 @@ body {
 .list-view .blog-post {
   display: flex;
   align-items: flex-start;
-  gap: 15px; /* Space between image and content */
+  gap: 15px;
+  /* Space between image and content */
   margin-bottom: 10px;
 }
 
 .list-view .blog-post-image {
-  flex: 0 0 30%; /* Image takes 30% of the width */
-  height: 150px; /* Set a fixed height for consistency */
-  width: 100%; /* Ensure the image container takes the full width available */
-  overflow: hidden; /* Hide any overflow content */
+  flex: 0 0 30%;
+  /* Image takes 30% of the width */
+  height: 150px;
+  /* Set a fixed height for consistency */
+  width: 100%;
+  /* Ensure the image container takes the full width available */
+  overflow: hidden;
+  /* Hide any overflow content */
 }
 
 .list-view .blog-image {
-  width: 100%; /* Image takes the full width */
+  width: 100%;
+  /* Image takes the full width */
   // height: 100%; /* Image takes the full height of the container */
-  object-fit: cover; /* Ensures the image covers the container without distortion */
+  object-fit: cover;
+  /* Ensures the image covers the container without distortion */
 }
 
 /* For grid view */
@@ -273,23 +319,30 @@ body {
 }
 
 .grid-view .blog-post {
-  width: 48%; /* Adjust this to fit two items per row */
+  width: 48%;
+  /* Adjust this to fit two items per row */
   margin-right: 4%;
   margin-bottom: 20px;
   box-sizing: border-box;
 }
 
 .grid-view .blog-post-image {
-  width: 100%; /* Image container takes 100% of the grid item's width */
-  height: 200px; /* Set a fixed height for consistency */
-  overflow: hidden; /* Hide any overflow content */
+  width: 100%;
+  /* Image container takes 100% of the grid item's width */
+  height: 200px;
+  /* Set a fixed height for consistency */
+  overflow: hidden;
+  /* Hide any overflow content */
 }
 
 .grid-view .blog-image {
-  width: 100% !important; /* Ensure the image fills the container */
+  width: 100% !important;
+  /* Ensure the image fills the container */
   //height: 100%; /* Image takes the full height of the container */
-  object-fit: cover; /* Ensures the image covers the container area without distortion */
+  object-fit: cover;
+  /* Ensures the image covers the container area without distortion */
 }
+
 .grid-view .blog-post:nth-child(2n) {
   margin-right: 0;
 }
@@ -377,27 +430,39 @@ body {
   width: 230px !important;
   height: 370px !important;
   //h450 and w250
-  object-fit: cover; /* Ensures the image covers the entire box without distortion */
-  margin-right: 10px; /* Space between the image and the next element */
+  object-fit: cover;
+  /* Ensures the image covers the entire box without distortion */
+  margin-right: 10px;
+  /* Space between the image and the next element */
 }
 
 .notification-container {
-  position: relative; /* Relative positioning for the inner notification */
-  height: 25px; /* Fixed height for the container */
-  width: 100%; /* Full width */
-  overflow: hidden; /* Hide overflow */
-  background-color: #f1f1f1; /* Optional: Background for visibility */
+  position: relative;
+  /* Relative positioning for the inner notification */
+  height: 25px;
+  /* Fixed height for the container */
+  width: 100%;
+  /* Full width */
+  overflow: hidden;
+  /* Hide overflow */
+  background-color: #f1f1f1;
+  /* Optional: Background for visibility */
   margin-top: 18px;
 }
 
 .notification {
-  white-space: nowrap; /* Prevent text wrapping */
-  top: 0; /* Align at the top */
-  right: 0; /* Start from the right edge */
-  animation: slide 15s linear infinite; /* Continuous animation */
+  white-space: nowrap;
+  /* Prevent text wrapping */
+  top: 0;
+  /* Align at the top */
+  right: 0;
+  /* Start from the right edge */
+  animation: slide 15s linear infinite;
+  /* Continuous animation */
   color: #ff0000;
   font-weight: 700;
 }
+
 // .scroll-text {
 //     display: inline-block;
 //     padding-left: 100%;
@@ -408,10 +473,13 @@ body {
 
 @keyframes slide {
   0% {
-    transform: translateX(100%); /* Start off-screen to the right */
+    transform: translateX(100%);
+    /* Start off-screen to the right */
   }
+
   100% {
-    transform: translateX(-100%); /* Move off-screen to the left */
+    transform: translateX(-100%);
+    /* Move off-screen to the left */
   }
 }
 
@@ -446,8 +514,10 @@ body {
 }
 
 .left-dot-container .dot.active {
-  background-color: black; /* Color for active dot */
+  background-color: black;
+  /* Color for active dot */
 }
+
 //right panel
 .right-slider-container {
   position: relative;
@@ -478,8 +548,10 @@ body {
 }
 
 .right-dot-container .dot.active {
-  background-color: black; /* Color for active dot */
+  background-color: black;
+  /* Color for active dot */
 }
+
 ::ng-deep mat-mdc-paginator {
   margin-top: 20px;
   display: flex;
@@ -490,7 +562,8 @@ body {
 ::ng-deep mat-mdc-paginator-container {
   display: flex;
   align-items: center;
-  justify-content: center; /* Centering paginator controls */
+  justify-content: center;
+  /* Centering paginator controls */
   padding: 0 8px;
   flex-wrap: wrap-reverse;
   width: 100%;
@@ -527,6 +600,7 @@ body {
   -ms-box-sizing: border-box;
   box-sizing: border-box;
 }
+
 body {
   font-size: 14px;
   background: #fff;
@@ -535,6 +609,7 @@ body {
   overflow-x: hidden;
   font-family: poppins;
 }
+
 #footer {
   background: #f7f7f7;
   padding: 3rem;
@@ -543,6 +618,7 @@ body {
   padding-bottom: 80px;
   background-image: url(https://arena.km.ua/wp-content/uploads/3538533.jpg);
 }
+
 #footer2 {
   background: #f7f7f7;
   padding: 3rem;
@@ -552,6 +628,7 @@ body {
   padding-bottom: 80px;
   // background-image: url(../assets/logos/casper.png);
 }
+
 // .logo-footer {
 //   /* max-width: 300px; */
 // }
@@ -566,9 +643,11 @@ body {
   font-size: 20px;
   font-weight: 600;
 }
+
 .social-links img {
   padding-bottom: 25px;
 }
+
 .social-icons {
   /* display: flex;
     gap: 3rem; */
@@ -577,6 +656,7 @@ body {
   gap: 1rem;
   color: #777777;
 }
+
 .social-icons a {
   /* font-size: 18px; */
   /* background: #ffffff; */
@@ -587,9 +667,11 @@ body {
   /* margin-right: 18px; */
   color: #777777;
 }
+
 .social-icons a:hover {
   color: #000;
 }
+
 .social-icons a i {
   box-shadow: rgb(0 0 0 / 8%) 0px 4px 12px;
   padding: 0.4rem 1rem 0.4rem 1rem;
@@ -598,75 +680,92 @@ body {
   font-size: 16px;
   margin-right: 12px;
 }
+
 li {
   list-style: none;
 }
+
 .useful-link h2 {
   padding-bottom: 15px;
   font-size: 20px;
   font-weight: 600;
 }
+
 .useful-link img {
   padding-bottom: 15px;
 }
+
 .use-links {
   line-height: 32px;
 }
+
 .use-links li i {
   font-size: 14px;
   padding-right: 8px;
   color: #898989;
 }
+
 .use-links li a {
   color: #303030;
   font-size: 15px;
   font-weight: 500;
   color: #777777;
 }
+
 .use-links li a:hover {
   color: #000;
 }
+
 .address h2 {
   padding-bottom: 15px;
   font-size: 20px;
   font-weight: 600;
 }
+
 .address img {
   padding-bottom: 15px;
 }
+
 .address-links li a {
   color: #303030;
   font-size: 15px;
   font-weight: 500;
   color: #777777;
 }
+
 .address-links li i {
   font-size: 16px;
   padding-right: 8px;
   color: #82074a;
 }
+
 .address-links li i:nth-child(1) {
   padding-top: 9px;
 }
+
 .address-links .address1 {
   font-weight: 500;
   font-size: 15px;
   display: flex;
 }
+
 .address-links {
   line-height: 32px;
   color: #777777;
 }
+
 .copy-right-sec {
   padding: 1.8rem;
   background: #82074a;
   color: #fff;
   text-align: center;
 }
+
 .copy-right-sec a {
   color: #fcd462;
   font-weight: 500;
 }
+
 a {
   text-decoration: none;
 }
@@ -729,6 +828,7 @@ a {
   transform: scale(1.15);
   border: 2px solid #fff;
 }
+
 .scroll-container-text button {
   background: linear-gradient(145deg, #3a3a3a, #1e1e1e);
   color: #eee;
@@ -803,6 +903,7 @@ a {
   transform: scale(1.15);
   border: 2px solid #fff;
 }
+
 /**********Grid section**********/
 
 .medicine-grid {
@@ -815,7 +916,8 @@ a {
 
 /* Medicine Card */
 .medicine-card {
-  background: linear-gradient(135deg, #f3dcf7, #d0e3ff); /* soft purple-blue gradient */
+  background: linear-gradient(135deg, #f3dcf7, #d0e3ff);
+  /* soft purple-blue gradient */
   border-radius: 15px;
   box-shadow: 0 6px 16px rgba(63, 81, 181, 0.2);
   padding: 20px;
@@ -879,6 +981,7 @@ a {
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     gap: 15px;
   }
+
   .card-title {
     font-size: 15px;
   }
@@ -921,4 +1024,45 @@ a {
 .search-input::placeholder {
   color: #5c6bc0;
   font-style: italic;
+}
+
+.clients-logos {
+  width: 100%;
+  overflow: hidden;
+  background: #fff;
+  padding: 20px 0;
+}
+
+.logo-track {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  /* Space between logos */
+  width: max-content;
+  animation: scroll 20s linear infinite;
+}
+
+.client-logos {
+  flex: 0 0 auto;
+}
+
+.client-logos img {
+  height: 70px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.logo-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(100vw);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
 }
