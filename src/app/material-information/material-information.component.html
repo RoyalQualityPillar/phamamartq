@@ -57,6 +57,8 @@
             <tr>
               <th>Pack No</th>
               <th>Material Name</th>
+              <th>Material Type</th>
+              <th>Monograph Status</th>
               <th>Material Cas NO</th>
               <th>Pack Name</th>
               <th>Pack Size</th>
@@ -70,6 +72,8 @@
             <tr *ngFor="let data of data.pack; let i = index">
               <td>{{ data.uc0001 }}</td>
               <td>{{ data.ff0011 }}</td>
+              <td>{{ data.ff0015 }}</td>
+              <td>{{ data.ff0014 }}</td>
               <td>{{ data.ff0013 }}</td>
               <td>{{ data.ff0001 }}</td>
               <td>{{ data.ff0002 }}</td>
