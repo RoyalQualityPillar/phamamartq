@@ -115,7 +115,7 @@ export class MasterDataManagementComponent implements OnDestroy {
         }
         if (response.data?.bgimpRsList[0].bgiCode) {
           this.RightPanelImage(response.data?.bgimpRsList[0].bgiCode);
-        }       
+        }
       });
   }
   leftPanelSlides: any;
@@ -279,6 +279,8 @@ export class MasterDataManagementComponent implements OnDestroy {
           title: item.ff0012,
           content: item.ff0003,
           meta: 'Monograph Status ' + item.ff0014,
+          formula: item.ff0004,
+          weight: item.ff0005
         }));
         this.loadPaginatedData();
       });
@@ -311,8 +313,8 @@ export class MasterDataManagementComponent implements OnDestroy {
         }
       });
   }
-clientLogos:any[] = [];
-   ClientLogos() {
+  clientLogos: any[] = [];
+  ClientLogos() {
     let unitCode = "PM1"
     let ff0001 = "CLOGO"
     const params = { ff0001, unitCode };
@@ -403,7 +405,7 @@ clientLogos:any[] = [];
     this.currentRightSlideIndex = index;
   }
 
- leftSlides2: any;
+  leftSlides2: any;
   leftImages2() {
     let unitCode = "PM1"
     let ff0001 = "LS2"
@@ -663,12 +665,12 @@ clientLogos:any[] = [];
     // Replace with your actual API call logic
   }
   public cart(): void {
-  this.openCart(false);
-}
+    this.openCart(false);
+  }
 
-public previousOrders(): void {
-  this.openCart(true);
-}
+  public previousOrders(): void {
+    this.openCart(true);
+  }
   isCartActive = false;
   public openCart(isPreviousOrder: boolean): void {
     this.isCartActive = true;
@@ -708,7 +710,7 @@ public previousOrders(): void {
             });
 
             dialogRef.afterClosed().subscribe(() => {
-              this.isCartActive = false; 
+              this.isCartActive = false;
             });
           }
         });

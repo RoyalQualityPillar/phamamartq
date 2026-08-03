@@ -190,8 +190,10 @@
         </div>
         <div class="blog-post-content">
           <div class="blog-title">{{ post.title }}</div>
-          <div class="blog-meta">{{ post.meta }}</div>
-          <div class="blog-content">{{ post.content }}</div>
+          <!-- <div class="blog-meta">{{ post.meta }}</div> -->
+          <div class="blog-content">CAS No - {{ post.content }}</div>
+          <div class="blog-meta">Molecular Formula - {{ post.formula }}</div>
+          <div class="blog-meta">Molecular Weight - {{ post.weight }}</div>
           <a (click)="materialInfo(post, i)" class="read-more">Read More</a>
         </div>
       </div>
