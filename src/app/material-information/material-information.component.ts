@@ -49,15 +49,17 @@ export class MaterialInformationComponent {
       },
     });
     dialogRef.afterClosed().subscribe((result) => {
-      this.data.ff0006 = result.price;
+      console.log(result);
+      this.data.materialInfo[0].ff0006 = result.price;
       // this.apiService.getEmail(this.data.mail);
-      this.apiService.validEmail.asObservable().subscribe((data) => {
-        if (data) {
-          this.showPriceQty = data ? false : true;
-          this.displayPriceQty = data ? true : false;
-          this.isVerified = data ? true : false;
-        }
-      });
+      //this.apiService.validEmail.asObservable().subscribe((data) => {
+      // if (data) {
+      this.showPriceQty = false;
+      this.displayPriceQty = true;
+      this.isVerified = true;
+      // this.apiService.setEmail(email);
+      //}
+      //});
     });
   }
 

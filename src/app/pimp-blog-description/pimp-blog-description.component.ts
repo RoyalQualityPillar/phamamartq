@@ -14,6 +14,9 @@ import { AuthService } from '../service/auth.service';
 import { CommonModule } from '@angular/common';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { SharedModule } from '../common/shared.module';
+import { MessageDialogComponent } from '../common/message-dialog/message-dialog.component';
+import { NotificationService } from '../common/notification.service';
+import { MessageService } from '../service/message.service';
 
 export interface userData {
   uc0001: any;
@@ -41,7 +44,9 @@ export class PimpBlogDescriptionComponent {
     public dialogRef: MatDialogRef<PrintConfirmationComponent>,
     @Inject(MAT_DIALOG_DATA) public userData: userData,
     private apiService: ApiService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private notificationService: NotificationService,
+    private messageService: MessageService,
   ) {
     this.detailConfirmation = this.fb.group({
       mailId: ['', Validators.required],
@@ -121,29 +126,37 @@ export class PimpBlogDescriptionComponent {
     this.apiService
       .sendRequest(apiEndPoints.pimrvalidationCode, HttpMethod, params)
       .subscribe((response: any) => {
-        if (response?.status) {
-          // Extract the price from the response if available
-          const price = response.data?.price || null;
+        //         if (response?.status) {
+        //           // Extract the price from the response if available
+        //           const price = response.data?.price ?? null;
+        // this.dialogRef.close({
+        //             verified: true,
+        //             price: price,
+        //             mail: params.ff0005
+        //           });      
 
-          // Close the dialog and pass the price back to the parent component
-          if (this.userData.type === 'price') {
 
-            this.dialogRef.close({
-              verified: true,
-              price: price,
-              mail: params.ff0005
-            });
-
-          }
-
-          else if (this.userData.type === 'cart') {
-
-            this.dialogRef.close({
-              verified: true,
-              mail: params.ff0005
-            });
-
-          }
+        //         }
+        if (response.errorInfo) {
+          this.dialog.open(MessageDialogComponent, {
+            data: {
+              message: response.errorInfo.message,
+              heading: 'Error Information',
+            },
+          });
+        } else {
+          this.notificationService.showSuccess(response.status, () => {
+          });
+          this.messageService.sendSnackbar(
+            'success',
+            response.status
+          );
+          const price = response.data?.price ?? null;
+          this.dialogRef.close({
+            verified: true,
+            price: price,
+            mail: params.ff0005
+          });
         }
       });
   }
