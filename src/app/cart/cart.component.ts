@@ -92,7 +92,7 @@ export class CartComponent implements OnInit, OnDestroy {
     private dialog: MatDialog,
     private messageService: MessageService,
     private cookieService: CookieService,
-       private notificationService: NotificationService,
+    private notificationService: NotificationService,
   ) {
     this.ViewDetailForm = this.fb.group({
       orgUnitCode: ['', Validators.required],
@@ -344,8 +344,8 @@ export class CartComponent implements OnInit, OnDestroy {
         });
       } else {
         this.notificationService.showSuccess(data.status, () => {
-          });
-          this.dialogRef.close();
+        });
+        this.dialogRef.close();
       }
     });
   }
