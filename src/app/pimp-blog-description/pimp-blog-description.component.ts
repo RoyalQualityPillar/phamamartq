@@ -147,10 +147,10 @@ export class PimpBlogDescriptionComponent {
         } else {
           this.notificationService.showSuccess(response.status, () => {
           });
-          this.messageService.sendSnackbar(
-            'success',
-            response.status
-          );
+          // this.messageService.sendSnackbar(
+          //   'success',
+          //   response.status
+          // );
           const price = response.data?.price ?? null;
           this.dialogRef.close({
             verified: true,
