@@ -1,5 +1,10 @@
-<div class="screenOverFlowY">
-  <div *ngFor="let data of data.materialInfo" class="margin-top_100px">
+<div class="dialog-close">
+  <button mat-icon-button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon" color="warn">close</mat-icon>
+  </button>
+</div>
+<div class="materialOverFlow">
+  <div *ngFor="let data of data.materialInfo">
     <div class="row margin-20_px">
       <div class="col-6 image-bg">
         <div class="watermark-container">
@@ -51,16 +56,16 @@
 
   <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" class="margin-10_px">
     <mat-tab label="Material Information" backgroundColor="primary">
-      <div class="margin-top_100px margin-20_px">
+      <div class=" margin-20_px screenOverFlow">
         <table>
           <thead>
             <tr>
               <th>Pack No</th>
               <th>Material Name</th>
-              <th>Material Type</th>
+              <th class="material-type-column">Material Type</th>
               <th>Monograph Status</th>
-              <th>Material Cas NO</th>
-              <th>Pack Name</th>
+              <th class="column-width">Material Cas NO</th>
+              <th class="pack-name-column">Pack Name</th>
               <th>Pack Size</th>
               <th>No of packs</th>
               <th>Quantity</th>
@@ -72,7 +77,7 @@
             <tr *ngFor="let data of data.pack; let i = index">
               <td>{{ data.uc0001 }}</td>
               <td>{{ data.ff0011 }}</td>
-              <td>{{ data.ff0015 }}</td>
+              <td>{{ data.ff0016 }}</td>
               <td>{{ data.ff0014 }}</td>
               <td>{{ data.ff0013 }}</td>
               <td>{{ data.ff0001 }}</td>
