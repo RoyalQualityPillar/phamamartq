@@ -477,7 +477,7 @@ export class MasterDataManagementComponent implements OnDestroy {
 
 
   scrollText() {
-    const params = { uc0001: 'SP1S001' };
+    const params = { unitcode: 'PM1' };
     const HttpMethod = 'GET';
 
     this.apiService
